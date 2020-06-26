@@ -1,0 +1,51 @@
+SemanticModel:
+    syntax=ConcreteSyntax
+    ast=AST
+    dataflow=DataFlow
+    ;
+
+ConcreteSyntax:
+    model=SemanticModel
+    ast=AST;
+
+AST:
+    model=SemanticModel
+    syntax=ConcreteSyntax;
+
+DataFlow:
+    model=Model
+    data=Data
+    flow=Flow
+    ;
+
+Flow:
+    ingest=IngestFunction
+    analyse=AnalyseFunction
+    manipulate=ManipulateFunction
+    model=ModelFunction
+    text=TestFunction;
+
+IngestFunction:
+       next=AnalyseFunction;
+
+AnalyseFunction:
+       next=ManipulateFunction;
+
+ManipulateFunction:
+       next=ModelFunction;
+
+ModelFunction:
+       next=TestFunction;
+
+TestFunction:
+       next=AnalyseFunction
+       finally=Results;
+
+Results:
+"output"
+;
+
+Data:
+"data"
+;
+Model:"data";

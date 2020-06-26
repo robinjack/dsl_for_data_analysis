@@ -1,0 +1,6 @@
+data = load 'iris.csv'
+show(data)
+data_target = col2
+col1 = log(col1)
+train data
+test data
