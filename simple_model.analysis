@@ -1,9 +1,10 @@
 data LOAD "iris.csv"
 print(data)
+data2 LOAD "iris.csv"
+print(data2)
+data3  = data2
 x = 1
 log(data)
-show(data)
+print(data)
 data_target = col2
-col1 = log(col1)
-train data
-test data
+end

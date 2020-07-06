@@ -1,2 +1,28 @@
-Data : name=ID " LOAD " fp=STRING;
-FuncCall : function=ID "("
+Program :
+    command *= Command
+    "end"
+    ;
+
+Command : Data  | Assignment | FunctionCall ;
+
+Data : name=ID "LOAD" fp=STRING;
+
+
+Assignment : key=ID "=" value=Expression;
+Expression:
+    ArithmeticExpression | FunctionCall | Data;
+
+ArithmeticExpression:
+    Value (Operator Value)*
+    ;
+
+Operator :
+    "*" | "+" | "-" | "/";
+
+Value: ID | INT | ("(" Expression ")");
+
+FunctionCall: functionName=Function "(" exp=[Expression] ")";
+
+Function:
+    "print" | "log" | "mean" | "sum" | "percentile" | "count"
+    ;
