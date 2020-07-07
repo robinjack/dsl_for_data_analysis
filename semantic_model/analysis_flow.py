@@ -11,6 +11,7 @@ The analysis flow exposes a way for us to connect the two.
 """
 
 
+# TODO: we may not actually need an analysis flow type, figure out if this is true
 
 
 class AnalysisFlow(Data):

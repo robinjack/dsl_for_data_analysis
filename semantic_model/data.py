@@ -3,8 +3,7 @@ from sklearn import datasets
 from sklearn.linear_model import LinearRegression
 import seaborn as sns
 from sklearn.model_selection import train_test_split
-from ..utils.const import NUMERIC_DATATYPES
-from .memento import DataOriginator, FunctionOriginator, ConcreteMemento, AnalysisFlow
+from utils.const import NUMERIC_DATATYPES
 
 
 """

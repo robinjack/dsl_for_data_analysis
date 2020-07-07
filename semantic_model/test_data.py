@@ -3,8 +3,8 @@ import pandas as pd
 from sklearn.linear_model import LogisticRegression
 # setup test dataset
 
-test_data = Data('iris.csv')
-df = pd.read_csv('iris.csv')
+test_data = Data('examples/iris.csv')
+df = pd.read_csv('examples/iris.csv')
 
 
 
@@ -15,7 +15,7 @@ def test_set_target():
 
 
 def test_set_model():
-    assert test_data.model == LinearRegression()
+    assert test_data.model == LinearRegression
     test_data.set_model(LogisticRegression())
     assert test_data.model == LogisticRegression()
 

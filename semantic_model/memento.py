@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+from typing import List
+from semantic_model.data import Data
 
 
 # https://refactoring.guru/design-patterns/memento/python/example
@@ -40,21 +42,22 @@ class DataOriginator(Originator):
     saves the state of the Data object. This approach
     is to be preferred if the size of your data is small.
     """
-    def __init__(self, state):
-        self.state=state
+    def __init__(self, state) -> None:
+        self.state = state
 
-    def set_state(self, new_state):
-        self.state=new_state
+    def set_state(self, new_state, func=lambda x: x) -> None:
+        self.state = func(new_state)
+        self.func = func
 
     def save(self):
-        return ConcreteMemento(self.state)
+        return ConcreteMemento(self.state, self.func)
 
     def restore(self, memento):
         self.state = memento.get_data()
 
 
 
-
+# TODO: implement FunctionOriginator - will leave this until later on
 class FunctionOriginator(Originator):
     """
     This class extends the originator class. It implements
@@ -63,9 +66,18 @@ class FunctionOriginator(Originator):
     you don't end up with multiple copies of the data, so
     you can easily rewind.
     """
-    def __init__(self):
-        pass
+    def __init__(self, state):
+        self.state = state
+        self.function = ['init']
 
+    def set_state(self, func):
+        self.function += func
+
+    def save(self):
+        return ConcreteMemento(self.function)
+
+    def restore(self, memento):
+        self.state = memento.get_data()
 
 
 class Memento(ABC):
@@ -75,7 +87,7 @@ class Memento(ABC):
      in the order. It also provides methods to get the state.
     """
     _transformations = []
-    _id=0
+    _id = 0
 
     @abstractmethod
     def get_name(self):
@@ -96,12 +108,27 @@ class Memento(ABC):
 # TODO: add in implementation of the Memento
 
 class ConcreteMemento(Memento):
-    def __init__(self, data=None, func=None):
+
+    def __init__(self, data: Data = None, func=None) -> None:
         self.data = data
+        self.func = func
         super()._transformations.append(func) if func is not None else None
-        self.id = super()._id
-        super()._id+=1
-    i
+        self.transformations = super()._transformations
+        self.id = Memento._id
+        Memento._id += 1
+
+    def get_name(self) -> str:
+        return '-'.join([str(self.id), str(self.func)])
+
+    def get_id(self) -> int:
+        return self.id
+
+    def get_transformations(self) -> List:
+        return self.transformations
+
+    def get_data(self) -> Data:
+        return self.Data
+
 
 
 
