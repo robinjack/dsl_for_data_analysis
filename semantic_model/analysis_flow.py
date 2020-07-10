@@ -1,6 +1,6 @@
-from .memento import *
-from .data import *
-from ..utils.const import ORIGINATOR_TYPES
+from semantic_model.memento import *
+from semantic_model.data import *
+from utils.const import ORIGINATOR_TYPES
 
 
 """

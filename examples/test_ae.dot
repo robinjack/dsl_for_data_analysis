@@ -1,0 +1,27 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4514568144 -> 4514566288 [label="statement:0" arrowtail=diamond dir=both]
+4514566288 -> 4514568464 [label="value" arrowtail=diamond dir=both]
+4514568464 -> 4514567632 [label="op:0" arrowtail=diamond dir=both]
+4514567632 -> 4514569808 [label="op:0" arrowtail=diamond dir=both]
+4514569808[label="{:Value|+op:int=1\l}"]
+4514567632 -> "+:str" [label="op:1" arrowtail=diamond dir=both]
+4514567632 -> 4514567952 [label="op:2" arrowtail=diamond dir=both]
+4514567952[label="{:Value|+op:int=1\l}"]
+4514567632[label="{:Product|}"]
+4514568464[label="{:Sum|}"]
+4514566288[label="{:Assignment|+key:str='x'\l}"]
+4514568144[label="{:Program|}"]
+
+}

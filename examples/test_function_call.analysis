@@ -1,0 +1,3 @@
+data LOAD "iris.csv"
+print(data)
+end

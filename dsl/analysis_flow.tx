@@ -1,0 +1,35 @@
+Program :
+    statement *= Statement
+    "end"
+    ;
+
+Comment:
+  /\/\/.*$/
+;
+
+Statement : Data  | Assignment | FunctionCall | Expression;
+
+Data : name=ID "LOAD" fp=STRING;
+
+Assignment : key=ID "=" value=Expression;
+
+Expression:
+    ArithmeticExpression| FunctionCall | Data;
+
+ArithmeticExpression : Sum;
+
+Value:  op=INT  |  ("(" ArithmeticExpression ")");
+
+Sum: op=Product (operator=[Operator] op=Product)*;
+
+Product : op=Value (operator=[Operator] op=Value)*;
+
+Operator:  "*" | "/" | "+" | "-" | "^" ;
+
+
+FunctionCall: functionName=Function "(" exp=[Expression] ")";
+
+Function:
+    "print" | "log" | "mean" | "sum" | "percentile" | "count" | "show" | "train" | "test"
+    ;
+

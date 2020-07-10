@@ -4,6 +4,6 @@ x = 1
 log(data)
 show(data)
 data_target = col2
-col1 = log(col1)
-train data
-test data
+train(data)
+test(data)
+end

@@ -1,0 +1,12 @@
+Query : Select From Where;
+
+    "SELECT"
+     colnames=Column+
+     "FROM"
+     table=Table
+     (("JOIN" join_table=Table
+     "ON" colA=Column "=" colb=Column
+     ("WHERE" Condition)
+
+
+Column: ;
