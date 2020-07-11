@@ -14,17 +14,24 @@ Data : name=ID "LOAD" fp=STRING;
 Assignment : key=ID "=" value=Expression;
 
 Expression:
-    ArithmeticExpression| FunctionCall | Data;
+    ArithmeticExpression| FunctionCall | Data | ("(" ArithmeticExpression ")") ;
 
-ArithmeticExpression : Sum;
+ArithmeticExpression : Sum ;
 
-Value:  op=INT  |  ("(" ArithmeticExpression ")");
+Sum: op=Product (operator=SumOperator op=Product)*;
 
-Sum: op=Product (operator=[Operator] op=Product)*;
+Product : op=Value (operator=ProductOperator op=Value)*;
 
-Product : op=Value (operator=[Operator] op=Value)*;
+Value: op=INT |  ("(" Sum ")");
 
-Operator:  "*" | "/" | "+" | "-" | "^" ;
+
+
+
+
+SumOperator:
+    "-" | "+";
+
+ProductOperator:  "*" | "/" | "^" ;
 
 
 FunctionCall: functionName=Function "(" exp=[Expression] ")";

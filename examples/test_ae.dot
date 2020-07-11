@@ -11,17 +11,16 @@
     edge[dir=black,arrowtail=empty]
 
 
-4514568144 -> 4514566288 [label="statement:0" arrowtail=diamond dir=both]
-4514566288 -> 4514568464 [label="value" arrowtail=diamond dir=both]
-4514568464 -> 4514567632 [label="op:0" arrowtail=diamond dir=both]
-4514567632 -> 4514569808 [label="op:0" arrowtail=diamond dir=both]
-4514569808[label="{:Value|+op:int=1\l}"]
-4514567632 -> "+:str" [label="op:1" arrowtail=diamond dir=both]
-4514567632 -> 4514567952 [label="op:2" arrowtail=diamond dir=both]
-4514567952[label="{:Value|+op:int=1\l}"]
-4514567632[label="{:Product|}"]
-4514568464[label="{:Sum|}"]
-4514566288[label="{:Assignment|+key:str='x'\l}"]
-4514568144[label="{:Program|}"]
+4731220432 -> 4731220688 [label="statement:0" arrowtail=diamond dir=both]
+4731220688 -> 4731220880 [label="value" arrowtail=diamond dir=both]
+4731220880 -> 4731221008 [label="op:0" arrowtail=diamond dir=both]
+4731221008 -> 4731221200 [label="op:0" arrowtail=diamond dir=both]
+4731221200[label="{:Value|+op:int=0\l}"]
+4731221008 -> 4731221392 [label="op:1" arrowtail=diamond dir=both]
+4731221392[label="{:Value|+op:int=100\l}"]
+4731221008[label="{:Product|operator:list=['*']\l}"]
+4731220880[label="{:Sum|operator:list=[]\l}"]
+4731220688[label="{:Assignment|+key:str='x'\l}"]
+4731220432[label="{:Program|}"]
 
 }

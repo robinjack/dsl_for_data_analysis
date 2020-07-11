@@ -1,5 +1,6 @@
 from textx import metamodel_from_file
 from semantic_model.data import Data
+from dsl.expression_parser.expression import ast
 
 
 

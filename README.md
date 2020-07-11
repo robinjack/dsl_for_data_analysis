@@ -28,15 +28,17 @@ In terms of the general plan for the code base:
     * AnalysisFlow -- class that connects dataset to method of storing analysis history
 * Utils Directory
     * const.py -- all the constants in the 
-* Grammar Files
+* DSL Directory
     * analysis_flow.tx
     * data_sql.tx -- we add in a way for analysts to use a language they are familiar with
     * evaluator.py -- a file that reads the grammar, populates the AST
     and then evaluates it according to the semantic model
 * Example Directory
     * simple_model.analysis -- this will be some example code
-* Interpreter Files
-    * repl.py
+* Utils
+    * repl.py - includes a REPL for the DSL
+    * visualisation -- includes code to visualise a model
+    * const.py -- includes the constants for the project
 
 
 

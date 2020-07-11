@@ -1,0 +1,38 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4648771984 -> 4648772240 [label="statement:0" arrowtail=diamond dir=both]
+4648772240 -> 4648772432 [label="value" arrowtail=diamond dir=both]
+4648772432 -> 4648772560 [label="op:0" arrowtail=diamond dir=both]
+4648772560 -> 4648772752 [label="op:0" arrowtail=diamond dir=both]
+4648772752[label="{:Value|+op:int=2\l}"]
+4648772560[label="{:Product|}"]
+4648772432 -> 4648772880 [label="op:1" arrowtail=diamond dir=both]
+4648772880 -> 4648772816 [label="op:0" arrowtail=diamond dir=both]
+4648772816[label="{:Value|+op:int=3\l}"]
+4648772880 -> "*:str" [label="op:1" arrowtail=diamond dir=both]
+4648772880 -> 4648773072 [label="op:2" arrowtail=diamond dir=both]
+4648773072[label="{:Value|+op:int=5\l}"]
+4648772880 -> "/:str" [label="op:3" arrowtail=diamond dir=both]
+4648772880 -> 4648773136 [label="op:4" arrowtail=diamond dir=both]
+4648773136[label="{:Value|+op:int=4\l}"]
+4648772880[label="{:Product|}"]
+4648772432 -> 4648772688 [label="op:2" arrowtail=diamond dir=both]
+4648772688 -> 4648773264 [label="op:0" arrowtail=diamond dir=both]
+4648773264[label="{:Value|+op:int=0\l}"]
+4648772688[label="{:Product|}"]
+4648772432[label="{:Sum|operator:list=['+','-']\l}"]
+4648772240[label="{:Assignment|+key:str='f'\l}"]
+4648771984[label="{:Program|}"]
+
+}
