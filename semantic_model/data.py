@@ -105,7 +105,10 @@ class Data :
         return self
 
     def score(self):
-        return self.model.score
+        return self.model.score(self.X_train.values, self.Y_train.values)
+
+    def residuals(self):
+        return
 
 
     # Utility functions

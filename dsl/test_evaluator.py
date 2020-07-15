@@ -2,7 +2,7 @@ from dsl.evaluator import *
 from semantic_model.data import Data
 
 
-simple_meta = metamodel_from_file('dsl/analysis_flow.tx')
+meta = metamodel_from_file('dsl/analysis_flow.tx')
 
 
 # TODO: test evaluate
@@ -23,17 +23,29 @@ def test_assignment():
     assert 'x' in result.symbol_table.keys()
     assert 1 in result.symbol_table.values()
 
-
-def test_arithmetic_expression():
-    model = meta.model_from_file('examples/test_arithmetic_expression.analysis')
+def test_basic_arithmetic_expression():
+    model = meta.model_from_file('examples/test_ae.analysis')
     result = Evaluator(model)
     result.run()
-    assert result.symbol_table["z"] == 1
-    assert result.symbol_table["e"] == 2
-    assert result.symbol_table["f"] == 3
-    assert result.symbol_table["o"] == 2.06
-    assert result.symbol_table["x"] == 101
-    assert result.symbol_table["y"] == 100101
+    assert result.symbol_table['x'] == 2
+
+def test_basic_sum_and_product_expression():
+    model = meta.model_from_file('examples/test_ae2.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result.symbol_table['f'] == 17
+
+
+# def test_arithmetic_expression():
+#     model = meta.model_from_file('examples/test_arithmetic_expression.analysis')
+#     result = Evaluator(model)
+#     result.run()
+#     assert result.symbol_table["z"] == 1
+#     assert result.symbol_table["e"] == 2
+#     assert result.symbol_table["f"] == 3
+#     assert result.symbol_table["o"] == 2.06
+#     assert result.symbol_table["x"] == 101
+#     assert result.symbol_table["y"] == 100101
 
 """
 
@@ -43,6 +55,12 @@ def test_function_call():
     assert False
     
     """
+
+
+def test_simple_program():
+    model = meta.model_from_file('examples/test_program.analysis')
+    result = Evaluator(model)
+    result.run()
 
 
 

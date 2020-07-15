@@ -5,7 +5,6 @@ This repository contains a DSL for data analysis, created as a project by Robin 
 The DSL's language is discussed further in the grammar section,
 but there are three main parts to this repo:
 1. A grammar for data analysis 
-- including a SQL syntax (stretch goal)
 2. A semantic model describing a Data object and an Analysis Flow (a record of the state of the data after each function is applied to it)
 3. An evaluator to run the code written in this language
 4. A REPL that allows us to execute code in this language in an iterative fashion // stretch goal 
@@ -13,7 +12,7 @@ but there are three main parts to this repo:
 ## Instructions for Installation
 Need to use pipenv + install the pipfile
 
-need to do the below if you want to visualise the mode:
+need to do the below if you want to visualise the model:
  
 brew install graphviz
 

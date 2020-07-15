@@ -62,3 +62,12 @@ def test_test():
     tested_data.test()
     assert 'predict_petal_width' in tested_data.X_test.columns
 
+
+def test_score():
+    tested_data = deepcopy(test_data)
+    tested_data.set_target('petal_width')
+    tested_data.train()
+    tested_data.test()
+    print(tested_data.score())
+
+

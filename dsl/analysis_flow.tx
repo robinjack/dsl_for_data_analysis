@@ -7,14 +7,16 @@ Comment:
   /\/\/.*$/
 ;
 
-Statement : Data  | Assignment | FunctionCall | Expression;
+Statement : Data  | Assignment | FunctionCall | Expression ;
 
 Data : name=ID "LOAD" fp=STRING;
 
-Assignment : key=ID "=" value=Expression;
+Column: data=[Data] "." column=ID;
+
+Assignment : (key=ID | key=[Column]) "=" (value=Expression | value=ID);
 
 Expression:
-    ArithmeticExpression| FunctionCall | Data | ("(" ArithmeticExpression ")") ;
+    ArithmeticExpression| FunctionCall | STRING |  Data | ("(" ArithmeticExpression ")");
 
 ArithmeticExpression : Sum ;
 
@@ -22,10 +24,7 @@ Sum: op=Product (operator=SumOperator op=Product)*;
 
 Product : op=Value (operator=ProductOperator op=Value)*;
 
-Value: op=INT |  ("(" Sum ")");
-
-
-
+Value: op=INT  |  ("(" Sum ")") | Column;
 
 
 SumOperator:
@@ -34,9 +33,13 @@ SumOperator:
 ProductOperator:  "*" | "/" | "^" ;
 
 
-FunctionCall: functionName=Function "(" exp=[Expression] ")";
+FunctionCall: functionName=Function "(" exp+=Parameter[","] ")";
+
+Parameter:
+    value=ID | value=STRING | value = INT | value=FLOAT;
 
 Function:
-    "print" | "log" | "mean" | "sum" | "percentile" | "count" | "show" | "train" | "test"
+    "print" | "log" | "mean" | "sum" | "percentile" | "count" |
+    "show" | "train" | "test" | "target" | "results"
     ;
 

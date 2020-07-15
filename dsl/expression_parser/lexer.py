@@ -61,7 +61,13 @@ exports.lex = lex;
 """
 
 
-def lex(input):
+class Lex(input):
+
+    def __init__(self):
+        self.tokens = []
+        self.ch = 0
+        self.index = 0
+
     def isArithmeticOperator(char):
         return char in '*-/+%'
 
@@ -91,9 +97,7 @@ def lex(input):
     def isReservedWord(token):
         return token in ['print', 'if', 'else', 'while']
 
-    tokens = []
-    ch = 0
-    index = 0
+
 
     """
     Plan for lexer:
@@ -113,13 +117,13 @@ def lex(input):
     if it is, explain it is a reserved word - otherwise add to 
     """
 
-    def addToken(type, value=None):
-        tokens.append({
+    def addToken(self, type, value=None):
+        self.tokens.append({
             'type': type,
             'value': value
         })
 
-    def addMultiCharacterToken(char, func, t, index):
+    def addMultiCharacterToken(self, char, func, t, index):
         token = char
         while func(char):
             index += 1
@@ -131,70 +135,73 @@ def lex(input):
                 else:
                     index += 1
 
-        addToken(t, token)
+        self.addToken(t, token)
         index += 1
         return index
 
-    while index < len(input):
-        char = input[index]
-        if isWhiteSpace(char):
-            index += 1
-        elif isSyntacticOperator(char):
-            addToken(char)
-            index += 1
-        elif isLogicalOperator(char):
-            token = char
-            index += 1
+    def lex(self, input):
+        tokens=[]
+        index = 0
+        while index < len(input):
             char = input[index]
-            if isLogicalOperator(char):
-                token += char
+            if self.isWhiteSpace(char):
                 index += 1
-                addToken(token)
-            else:
-                addToken(token)
-        elif isArithmeticOperator(char):
-            addToken(char)
-            index += 1
-        elif isDigit(char):
-            # addMultiCharacterToken(char, isDigit, 'digit', index)
-            token = char
-            index += 1
-            while (isDigit(char) and index < len(input)):
+            elif self.isSyntacticOperator(char):
+                self.addToken(char)
+                index += 1
+            elif self.isLogicalOperator(char):
+                token = char
+                index += 1
                 char = input[index]
-                if isDigit(char):
+                if self.isLogicalOperator(char):
                     token += char
                     index += 1
+                    self.addToken(token)
                 else:
-                    break
-            addToken('digit', token)
-        # index+=1
-        elif isLetter(char):
-            # token=''
-            token = char
-            index += 1
-            char = input[index]
-
-            while (isLetter(char)):
-                if index < len(input):
+                    self.addToken(token)
+            elif self.isArithmeticOperator(char):
+                self.addToken(char)
+                index += 1
+            elif self.isDigit(char):
+                # addMultiCharacterToken(char, isDigit, 'digit', index)
+                token = char
+                index += 1
+                while (self.isDigit(char) and index < len(input)):
                     char = input[index]
-                    if isLetter(char):
+                    if self.isDigit(char):
                         token += char
                         index += 1
                     else:
                         break
+                self.addToken('digit', token)
+            # index+=1
+            elif self.isLetter(char):
+                # token=''
+                token = char
+                index += 1
+                char = input[index]
+
+                while (self.isLetter(char)):
+                    if index < len(input):
+                        char = input[index]
+                        if self.isLetter(char):
+                            token += char
+                            index += 1
+                        else:
+                            break
+                    else:
+                        break
+                if self.isReservedWord(token):
+                    self.addToken(token)
                 else:
-                    break
-            if isReservedWord(token):
-                addToken(token)
+                    self.addToken('identifier', token)
+            # elif isNewLine(char):
+            # 	addToken('newline')
+            # 	index+=1
             else:
-                addToken('identifier', token)
-        # elif isNewLine(char):
-        # 	addToken('newline')
-        # 	index+=1
-        else:
-            raise Exception("Character not recognised as a valid expression: ", char)
-    addToken('end', 'end')
-    return tokens
+                raise Exception("Character not recognised as a valid expression: ", char)
+        self.addToken('end', 'end')
+        return tokens
 
 
 

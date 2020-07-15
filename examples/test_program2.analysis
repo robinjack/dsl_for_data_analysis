@@ -1,0 +1,10 @@
+data LOAD "iris.csv"
+print(data)
+sepal_length_log = log(sepal_length)
+show(data)
+x = 1
+sepal_length = sepal_length + x
+data_target = sepal_length_log
+train(data)
+test(data)
+end

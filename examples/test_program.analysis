@@ -1,9 +1,8 @@
-data LOAD "iris.csv"
+data LOAD "examples/iris.csv"
 print(data)
-x = 1
-log(data)
-show(data)
-data_target = col2
+s = 1
+target(data, "sepal_length")
 train(data)
 test(data)
+results(data)
 end
