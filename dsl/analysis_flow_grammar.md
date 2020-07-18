@@ -11,7 +11,8 @@ Analysis flow looks like:
 
 In order to make the analysis flow as clear
 as possible to the user and the reader, we
-will clearly delineate the data flow.
+will clearly delineate the data flow by having it clearly labelled
+in each command.
 
 Each section will have the following structure 
 
@@ -29,11 +30,14 @@ ARGS refers to section specific arguments we may apply
 We will then have some unique arguments which allow us to inspect the work that has been done
 
 INSPECT
-This will open up a new part of the REPL, that will allow you to reload the data at a specific point    
+This will open up a new part of the REPL, that will allow you to reload the data at a specific point
+
+REVERT $ID 
+This will load back to a specific ID     
 
 #Ingestion
 We will begin with only loading from a filepath.
-$VARNAME LOAD $FP
+LOAD $DATA $FP
 
 #Analysis
 This can involve a variety of different forms. However, we are going to
@@ -45,6 +49,12 @@ at some data. But they fall into three categories:
 - Summary statistics of one column, or two columns compared
 - Viewing individual rows
 - plotting the data
+
+Example:
+
+ANALYSIS $DATA VIEW column=$COLNAME function=$FUNCTION
+ANALYSIS $DATA SUMMARISE column=$COLNAME function=$FUNCTION
+ANALYSIS $DATA PLOT kind=$PLOTKIND
 
 ## Summary statistics
 We will begin with a simple language, that will just allow us to
@@ -61,7 +71,7 @@ than any machine. You need to look at the actual values
 themselves.
 
 We will expose the data through
-$dataname VIEW $startindex:$end_index
+ANALYSIS $DATA VIEW $startindex:$end_index
 
 
 
@@ -73,10 +83,13 @@ you want to manipulate the data to improve your model.
 You might do this in the following ways:
 1. Filter
 2. Map
+3. Group
 
 We will look to manipulate the data in a SQL-like language.
 SELECT *, col1 + 1 as new_col from $data
 where col2 > 10
+
+MANIPULATION  SELECT $MAP COL FROM $DATA WHERE $FILTER  
 
 # Train
 As the notion of training is embedded within the work we
@@ -89,7 +102,7 @@ We will initially only allow linear regression (as this DSL
 will focus particularly on linear-regression) but we coulc
 expand this out to include other
 
-$DATA TRAIN
+TRAIN $DATA target=$TARGET
 
 
 #Test
@@ -100,3 +113,8 @@ on the right thing.
 Similar to above, the majority of the work will be done in
 the manipulation phase. This phase will be very simple,
 you will evaluate the results on the test data
+
+TEST $DATA target=$TARGET
+
+#Review 
+SCORE $DATA function=$FUNCTION
