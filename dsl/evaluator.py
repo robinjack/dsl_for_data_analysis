@@ -2,8 +2,6 @@ from textx import metamodel_from_file
 from semantic_model.data import Data
 import numpy as np
 from dsl.symbol_table import SYMBOL_TABLE
-# from dsl.expression_parser.expression import ast
-
 
 
 

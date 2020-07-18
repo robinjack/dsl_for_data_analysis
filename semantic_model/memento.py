@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 from typing import List
 from semantic_model.data import Data
+from dsl.evaluator import Evaluator
+import inspect
+
 
 
 # https://refactoring.guru/design-patterns/memento/python/example
@@ -47,6 +50,28 @@ class DataOriginator(Originator):
 
     def set_state(self, new_state, func=lambda x: x) -> None:
         self.state = func(new_state)
+        self.func = func
+
+    def save(self):
+        return ConcreteMemento(self.state, self.func)
+
+    def restore(self, memento):
+        self.state = memento.get_data()
+
+class EvaluatorOriginator(Originator):
+    """
+    TODO: figure out whch originator to use
+    This class extends the originator class.
+    It implements originator in a way that
+    saves the evaluator of the grammar object. This approach
+    is to be preferred if you have multiple data objects.
+    """
+    def __init__(self, state) -> None:
+        self.state = state
+        self.func=None
+
+    def set_state(self, new_state, func=lambda x: x) -> None:
+        self.state = new_state
         self.func = func
 
     def save(self):
@@ -118,7 +143,12 @@ class ConcreteMemento(Memento):
         Memento._id += 1
 
     def get_name(self) -> str:
-        return '-'.join([str(self.id), str(self.func)])
+        """
+        This function is intended to combine the source code of the function that's been
+        applied to the state, and returns the new state
+        :return:
+        """
+        return '-'.join([str(self.id), self.func])
 
     def get_id(self) -> int:
         return self.id
@@ -127,7 +157,7 @@ class ConcreteMemento(Memento):
         return self.transformations
 
     def get_data(self) -> Data:
-        return self.Data
+        return self.data
 
 
 
@@ -164,3 +194,18 @@ class Caretaker:
 
 
 
+
+
+if __name__ ==  '__main__':
+    d = Data('../examples/iris.csv')
+    o = DataOriginator(d)
+    c = Caretaker(o)
+    o.set_state(d.map(d.get_columns()[0], lambda x: x + 1))
+    c.backup()
+    print(o.state.count())
+    o.set_state(o.state.filter(d.get_columns()[0], lambda x: x < 3))
+    print(o.state.count())
+    c.backup()
+    c.show_history()
+    c.load(0)
+    print(o.state.count())

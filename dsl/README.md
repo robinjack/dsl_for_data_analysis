@@ -21,10 +21,16 @@ As from the plan, the next big steps are as follows:
 1. Manipulation of the columns
 2. Filtering of the rows
 3. Rewinding of the analysis to a previous point
+4. Grouping of a dataset
+
+However, exposing this functionality at the current place 
+where the  
 
 What do I need for these three sections?
 Manipulation
+- mapping a column to another value 
 
 Filtering
+- 
 
 Rewinding of the analysis

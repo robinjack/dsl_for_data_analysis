@@ -11,9 +11,11 @@ Statement : Data  | Assignment | FunctionCall | Expression ;
 
 Data : name=ID "LOAD" fp=STRING;
 
-Column: data=[Data] "." column=ID;
+//Column: data=[Data] "." column=ID;
 
-Assignment : (key=ID | key=[Column]) "=" (value=Expression | value=ID);
+Assignment : (key=ID
+//| key=Column
+) "=" (value=Expression | value=ID);
 
 Expression:
     ArithmeticExpression| FunctionCall | STRING |  Data | ("(" ArithmeticExpression ")");
@@ -24,7 +26,9 @@ Sum: op=Product (operator=SumOperator op=Product)*;
 
 Product : op=Value (operator=ProductOperator op=Value)*;
 
-Value: op=INT  |  ("(" Sum ")") | Column;
+Value: op=INT  |  ("(" Sum ")")
+//| Column
+;
 
 
 SumOperator:

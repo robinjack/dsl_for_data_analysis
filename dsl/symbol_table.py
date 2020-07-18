@@ -22,7 +22,7 @@ SYMBOL_TABLE = {
     '^': lambda x, y: np.power(x, y),
     '%': lambda x, y: x % y,
     'print': lambda x: print(x),
-    'log': lambda x: x.log(),
+    'log': lambda x: np.log(x),
     'mean': lambda x: x.mean,
     'sum': lambda x: x.sum(),
     'percentile': lambda x, y: np.percentile(x, y),
