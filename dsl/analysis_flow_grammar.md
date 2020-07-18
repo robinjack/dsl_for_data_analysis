@@ -118,3 +118,9 @@ TEST $DATA target=$TARGET
 
 #Review 
 SCORE $DATA function=$FUNCTION
+
+
+
+TODO: 
+1. Rewrite grammar to match the above
+2. Rewrite all the sample pieces of code to match the above
