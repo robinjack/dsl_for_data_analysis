@@ -83,7 +83,7 @@ you want to manipulate the data to improve your model.
 You might do this in the following ways:
 1. Filter
 2. Map
-3. Group
+3. Group [optional - will not include for v1]
 
 We will look to manipulate the data in a SQL-like language.
 SELECT *, col1 + 1 as new_col from $data

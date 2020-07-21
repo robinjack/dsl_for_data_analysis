@@ -51,3 +51,45 @@ http://textx.github.io/textX/stable/grammar/
 ##  Things to investigate / reading:
 1. https://dbader.org/blog/writing-a-dsl-with-python#.
 
+
+# Plan
+
+
+TASK NAME
+START DATE
+END DATE
+START ON DAY*
+DURATION* (WORK DAYS)
+
+
+
+
+
+
+
+
+
+
+
+Submit proposal - 5/5 [DONE]
+Design minimally viable semantic model - 5/5 [DONE]
+Create tests for semantic model - 5/21 [DONE - for the data model]
+TODO - create finalised tests for memento
+Implement Semantic Model as class model - 5/31 [DONE - for data model + memento]
+Work to pass tests for semantic model - 6/21 [DONE - for data]
+TODO - pass tests for memento
+Finalise DSL syntax design - 7/1 [DONE]
+NOTES - had finished this, but then saw feedback on my proposal. Currently
+Create tests for DSL syntax - 7/6
+TODO - 1. create tests for evaluator class
+TODO - 2. create tests for program  
+Implement DSL syntax in TextX - 7/12
+TODO - 1. implement evaluator class
+TODO - 2. 
+Work to pass tests - 7/31
+Gather user feedback - 8/11
+Summarise user feedback - 8/15
+Incorporate updates to DSL - 8/15
+Write report 8/30
+
+
