@@ -7,26 +7,29 @@ Comment:
   /\/\/.*$/
 ;
 
-Statement : Data  | Assignment | FunctionCall | Expression ;
+Statement : Data  | Analysis | Manipulation | Train | Test | Score | Assignment | FunctionCall | Expression ;
 
 Data : "LOAD" name=ID fp=STRING;
-Analysis: "ANALYSIS" data=[Data] AnalysisFunction (exp+=Parameter[","])*;
+Analysis: "ANALYSIS" data=[Data] functionName=AnalysisFunction (args*=KeywordParameter[","])?;
 Manipulation :
-    "MANIPULATION" DataSQL;
+    "MANIPULATION" query=DataSQL;
 
 DataSQL :
-    "SELECT" expressions+=Expression
+    "SELECT" maps+=ID[","]
     "FROM"  data=[Data]
-    ("WHERE" filter+=Filter)?;
+    ("WHERE" filter+=Expression)?;
 
-Train: "TRAIN" data=[Data]  parameters+=Parameter[","];
+Train: "TRAIN" data=[Data]  (parameters+=KeywordParameter[","])*;
 
-Test: "TRAIN" data=[Data]  parameters+=Parameter[","];
+Test: "TEST" data=[Data]  (parameters+=KeywordParameter[","])*;
 
-Score: "SCORE" data=[Data] parameters+=Parameter[","];
+Score: "SCORE" data=[Data] (parameters+=KeywordParameter[","])*;
 
 AnalysisFunction:
     "print" | "mean" | "sum" | "count" | "percentile";
+
+KeywordParameter:
+    param=ID "=" value=Parameter;
 
 
 // TODO: Will keep the below for now, but it might be worth
@@ -59,6 +62,6 @@ Parameter:
 
 Function:
     "print" | "log" | "mean" | "sum" | "percentile" | "count" |
-    "show" | "train" | "test" | "target" | "results"
+    "show" | "target" | "results"
     ;
 

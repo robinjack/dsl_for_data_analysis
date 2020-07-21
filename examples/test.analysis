@@ -1,0 +1,7 @@
+LOAD d "examples/iris.csv"
+ANALYSIS d print head=5, tail=100
+//MANIPULATE SELECT colA FROM d
+TRAIN d target="sepal_length"
+TEST d
+SCORE d
+end

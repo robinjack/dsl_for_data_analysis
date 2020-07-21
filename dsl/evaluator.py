@@ -29,6 +29,13 @@ class Evaluator:
             'analysis_flow.Sum': self.arithmetic_expression,
             'analysis_flow.Product': self.arithmetic_expression,
             'analysis_flow.Parameter': self.parameter,
+            'analysis_flow.Analysis': self.analysis,
+            'analysis_flow.Manipulation': self.manipulation,
+            'analysis_flow.Train': self.train,
+            'analysis_flow.Test': self.test,
+            'analysis_flow.Score': self.score,
+
+
         }
         self.model = model
         self.index=0
@@ -141,11 +148,34 @@ class Evaluator:
         return self.evaluate(statement.functionName)(
             *self.evaluate(statement.exp))
 
+    def analysis(self, statement):
+        data = self.evaluate(statement.data)
+        function = self.evaluate(statement.functionName)
+        args = {arg.param: arg.value for arg in statement.args}
+        args['data'] = data
+        return function(*args)
+
+    def manipulation(self, statement):
+        return self.evaluate(statement.query)
+
+    def query(self, statement):
+    #     TODO: figure out how to evaluate a QUERY
+        return
+
     def parameter(self, statement):
         return self.evaluate(statement.value)
 
     def update_model(self, model):
         self.model=model
+
+    def train(self, statement):
+        return self.evaluate(statement.data).train()
+
+    def test(self, statement):
+        return statement.data.test()
+
+    def score(self, statement):
+        statement.data.score()
 
 
 if __name__ == "__main__":

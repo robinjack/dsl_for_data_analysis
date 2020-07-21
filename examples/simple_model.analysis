@@ -1,6 +1,6 @@
-data LOAD "iris.csv"
+LOAD data  "iris.csv"
 print(data)
-data2 LOAD "iris.csv"
+LOAD data2  "iris.csv"
 print(data2)
 data3  = data2
 x = 1
