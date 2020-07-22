@@ -21,12 +21,12 @@ brew install graphviz
 Overall summary of the semantic model can be found in the README.md in the semantic model folder
 
 In terms of the general plan for the code base:
+* Top Level
+    * repl.py - includes a REPL for the DSL
+    * Config files(Pipfile for dependencies, pytest settings, gitignore)
 * Semantic model Directory
     * Data -- class representing a dataset
     * Memento -- class representing the way we store the data
-    * AnalysisFlow -- class that connects dataset to method of storing analysis history
-* Utils Directory
-    * const.py -- all the constants in the 
 * DSL Directory
     * analysis_flow.tx
     * data_sql.tx -- we add in a way for analysts to use a language they are familiar with
@@ -34,8 +34,8 @@ In terms of the general plan for the code base:
     and then evaluates it according to the semantic model
 * Example Directory
     * simple_model.analysis -- this will be some example code
+    * All other .analysis models. These are in order to demonstrate the DSL
 * Utils
-    * repl.py - includes a REPL for the DSL
     * visualisation -- includes code to visualise a model
     * const.py -- includes the constants for the project
 
