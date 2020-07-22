@@ -26,7 +26,7 @@ In terms of the general plan for the code base:
     * Config files(Pipfile for dependencies, pytest settings, gitignore)
 * Semantic model Directory
     * Data -- class representing a dataset
-    * Memento -- class representing the way we store the data
+    * Memento -- class representing the way we store the analysis flow and allows us to load the previous state
 * DSL Directory
     * analysis_flow.tx
     * data_sql.tx -- we add in a way for analysts to use a language they are familiar with
