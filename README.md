@@ -62,7 +62,7 @@ http://textx.github.io/textX/stable/grammar/
 * Work to pass tests for semantic model - 6/21 [DONE - for data]
     * TODO - pass tests for memento
     * Finalise DSL syntax design - 7/1 [REDO]
-    * NOTES - had finished this, but then saw feedback on my proposal. Currently
+    * NOTES - had finished this, but then saw feedback on my proposal. Currently in the process of redoing the analysis.
     * Need to design a BNF/CFG for the language. Can then easily create this in TextX
 * Create tests for DSL syntax - 7/6 [DONE v1]
     * TODO - 1. create tests for evaluator class. Notes on 
