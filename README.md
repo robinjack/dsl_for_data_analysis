@@ -56,21 +56,22 @@ http://textx.github.io/textX/stable/grammar/
 
 * Submit proposal - 5/5 [DONE]
 * Design minimally viable semantic model - 5/5 [DONE]
-* Create tests for semantic model - 5/21 [DONE - for the data model]
-    * TODO - create finalised tests for memento
+* Create tests for semantic model - 5/21 [DONE]
+    * TODO - create finalised tests for memento [DONE]
     * Implement Semantic Model as class model - 5/31 [DONE - for data model + memento]
 * Work to pass tests for semantic model - 6/21 [DONE - for data]
-    * TODO - pass tests for memento
-    * Finalise DSL syntax design - 7/1 [REDO]
+    * TODO - pass tests for memento [DONE]
+* Finalise DSL syntax design - 7/1 [DONE]
     * NOTES - had finished this, but then saw feedback on my proposal. Currently in the process of redoing the analysis.
     * Need to design a BNF/CFG for the language. Can then easily create this in TextX
 * Create tests for DSL syntax - 7/6 [DONE v1]
-    * TODO - 1. create tests for evaluator class. Notes on 
+    * TODO - 1. create tests for evaluator class. Note, we are looking at a redesign
     * TODO - 2. create tests for program  
     * TODO - 3. rewrite the sample code pieces to run
 * Implement DSL syntax in TextX - 7/12 [V1 done - redo]
     * TODO - 1. implement evaluator class [v1 done, except manipulation]
     * TODO - 2. implement the DSL grammar [v1 done, except manipulation]
+    * TODO - 3. implement evaluator class as an OOP interpreter (each class has its own evaluate method)
 * Work to pass tests - 7/31
     * TODO - 1. IN PROGRESS
 * Gather user feedback - 8/11

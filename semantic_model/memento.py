@@ -53,7 +53,7 @@ class DataOriginator(Originator):
         self.func = func
 
     def save(self):
-        return ConcreteMemento(self.state, self.func)
+        return ConcreteMemento(self.state)
 
     def restore(self, memento):
         self.state = memento.get_data()
@@ -75,7 +75,7 @@ class EvaluatorOriginator(Originator):
         self.func = func
 
     def save(self):
-        return ConcreteMemento(self.state, self.func)
+        return ConcreteMemento(self.state)
 
     def restore(self, memento):
         self.state = memento.get_data()
