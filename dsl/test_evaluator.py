@@ -67,7 +67,7 @@ There are three basic tests:
     choose Y
     predict Y
     review results
-    manipulate the data
+    manipulate the data (SELECT col + 1 where col < 10)
     predict Y
     compare results
 3. Two manipulations + rewind a manipulation to a previous snapshot
