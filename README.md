@@ -21,12 +21,12 @@ brew install graphviz
 Overall summary of the semantic model can be found in the README.md in the semantic model folder
 
 In terms of the general plan for the code base:
+* Top Level
+    * repl.py - includes a REPL for the DSL
+    * Config files(Pipfile for dependencies, pytest settings, gitignore)
 * Semantic model Directory
     * Data -- class representing a dataset
-    * Memento -- class representing the way we store the data
-    * AnalysisFlow -- class that connects dataset to method of storing analysis history
-* Utils Directory
-    * const.py -- all the constants in the 
+    * Memento -- class representing the way we store the analysis flow and allows us to load the previous state
 * DSL Directory
     * analysis_flow.tx
     * data_sql.tx -- we add in a way for analysts to use a language they are familiar with
@@ -34,8 +34,8 @@ In terms of the general plan for the code base:
     and then evaluates it according to the semantic model
 * Example Directory
     * simple_model.analysis -- this will be some example code
+    * All other .analysis models. These are in order to demonstrate the DSL
 * Utils
-    * repl.py - includes a REPL for the DSL
     * visualisation -- includes code to visualise a model
     * const.py -- includes the constants for the project
 
@@ -50,4 +50,32 @@ http://textx.github.io/textX/stable/grammar/
 
 ##  Things to investigate / reading:
 1. https://dbader.org/blog/writing-a-dsl-with-python#.
+
+
+# Plan
+
+* Submit proposal - 5/5 [DONE]
+* Design minimally viable semantic model - 5/5 [DONE]
+* Create tests for semantic model - 5/21 [DONE - for the data model]
+    * TODO - create finalised tests for memento
+    * Implement Semantic Model as class model - 5/31 [DONE - for data model + memento]
+* Work to pass tests for semantic model - 6/21 [DONE - for data]
+    * TODO - pass tests for memento
+    * Finalise DSL syntax design - 7/1 [REDO]
+    * NOTES - had finished this, but then saw feedback on my proposal. Currently in the process of redoing the analysis.
+    * Need to design a BNF/CFG for the language. Can then easily create this in TextX
+* Create tests for DSL syntax - 7/6 [DONE v1]
+    * TODO - 1. create tests for evaluator class. Notes on 
+    * TODO - 2. create tests for program  
+    * TODO - 3. rewrite the sample code pieces to run
+* Implement DSL syntax in TextX - 7/12 [V1 done - redo]
+    * TODO - 1. implement evaluator class [v1 done, except manipulation]
+    * TODO - 2. implement the DSL grammar [v1 done, except manipulation]
+* Work to pass tests - 7/31
+    * TODO - 1. IN PROGRESS
+* Gather user feedback - 8/11
+* Summarise user feedback - 8/15
+* Incorporate updates to DSL - 8/15
+* Write report 8/30
+
 
