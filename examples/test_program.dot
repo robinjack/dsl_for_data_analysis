@@ -1,0 +1,39 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4497094352 -> 4497094160 [label="statement:0" arrowtail=diamond dir=both]
+4497094160[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4497094352 -> 4497093072 [label="statement:1" arrowtail=diamond dir=both]
+4497093072 -> 4497055952 [label="exp:0" arrowtail=diamond dir=both]
+4497055952[label="{:Parameter|+value:str='data'\l}"]
+4497093072[label="{:FunctionCall|+functionName:str='print'\l}"]
+4497094352 -> 4497093008 [label="statement:2" arrowtail=diamond dir=both]
+4497093008 -> 4497058896 [label="value" arrowtail=diamond dir=both]
+4497058896 -> 4497057296 [label="op:0" arrowtail=diamond dir=both]
+4497057296 -> 4497057168 [label="op:0" arrowtail=diamond dir=both]
+4497057168[label="{:Value|+op:int=1\l}"]
+4497057296[label="{:Product|operator:list=[]\l}"]
+4497058896[label="{:Sum|operator:list=[]\l}"]
+4497093008[label="{:Assignment|+key:str='s'\l}"]
+4497094352 -> 4497092752 [label="statement:3" arrowtail=diamond dir=both]
+4497092752 -> 4497094160 [label="data" ]
+4497092752[label="{:Train|+parameters:list=[]\l}"]
+4497094352 -> 4497055888 [label="statement:4" arrowtail=diamond dir=both]
+4497055888 -> 4497094160 [label="data" ]
+4497055888[label="{:Test|+parameters:list=[]\l}"]
+4497094352 -> 4497056464 [label="statement:5" arrowtail=diamond dir=both]
+4497056464 -> 4497094160 [label="data" ]
+4497056464[label="{:Score|+parameters:list=[]\l}"]
+4497094352[label="{:Program|}"]
+
+}

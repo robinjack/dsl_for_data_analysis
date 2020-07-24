@@ -1,0 +1,2 @@
+LOAD data "examples/iris.csv"
+ANALYSIS data print

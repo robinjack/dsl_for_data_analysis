@@ -1,0 +1,3 @@
+LOAD data "examples/iris.csv"
+MANIPULATION data
+    SELECT * FROM data

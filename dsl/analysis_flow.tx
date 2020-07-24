@@ -17,7 +17,7 @@ Manipulation :
 DataSQL :
     "SELECT" maps+=ID[","]
     "FROM"  data=[Data]
-    ("WHERE" filter+=Expression)?;
+    ("WHERE" filter+=Expression);
 
 Train: "TRAIN" data=[Data]  (parameters+=KeywordParameter[","])*;
 
