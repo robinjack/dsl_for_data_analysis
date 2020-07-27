@@ -52,8 +52,8 @@ at some data. But they fall into three categories:
 
 Example:
 
-ANALYSIS $DATA VIEW column=$COLNAME function=$FUNCTION
-ANALYSIS $DATA SUMMARISE column=$COLNAME function=$FUNCTION
+ANALYSIS $DATA VIEW column=$COLNAME, function=$FUNCTION
+ANALYSIS $DATA SUMMARISE column=$COLNAME, function=$FUNCTION
 ANALYSIS $DATA PLOT kind=$PLOTKIND
 
 ## Summary statistics
@@ -118,3 +118,10 @@ TEST $DATA target=$TARGET
 
 #Review 
 SCORE $DATA function=$FUNCTION
+
+
+
+TODO: 
+1. Rewrite grammar to match the above
+2. Rewrite all the sample pieces of code to match the above
+3. Add in shortcuts (i.e. M for MANIPULATION)

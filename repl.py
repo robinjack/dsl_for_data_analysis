@@ -13,6 +13,16 @@ from textx import metamodel_from_file
 from dsl.evaluator import Evaluator
 from semantic_model.memento import *
 
+def revert(caretaker):
+    id_to_load = input()
+    try:
+        int_id_to_load = int(id_to_load)
+        caretaker.load(int_id_to_load)
+        return
+    except Exception as e:
+        print(e)
+        print("Try a different id.")
+        revert(caretaker)
 
 def repl(params=None):
     """
@@ -36,6 +46,8 @@ def repl(params=None):
         new_statement = input()
         if new_statement == "inspect":
             caretaker.show_history()
+        elif new_statement == 'revert':
+            revert(caretaker)
         elif new_statement != 'end':
             try:
                 statement_to_run = statement + "\n " + new_statement

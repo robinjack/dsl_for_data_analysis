@@ -1,0 +1,114 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+140705014127920[ label="{Program|}"]
+
+140705014131328[ label="{Comment|\\/\\/.*$}"]
+
+140705014135312[ label="{*Statement|}"]
+
+140705014138720[ label="{Data|+name:ID\l+fp:STRING\l}"]
+
+140705014142704[ label="{Analysis|+functionName:AnalysisFunction\l}"]
+
+140705014146112[ label="{Manipulation|}"]
+
+140705014149520[ label="{DataSQL|}"]
+
+140705014152928[ label="{Train|}"]
+
+140705014156336[ label="{Test|}"]
+
+140705049710192[ label="{Score|}"]
+
+140705050981456[ label="{AnalysisFunction|print\|mean\|sum\|count\|percentile}"]
+
+140705051017920[ label="{KeywordParameter|+param:ID\l}"]
+
+140705051020752[ label="{Assignment|+key:ID\l+value:OBJECT\l}"]
+
+140705051023584[ label="{*Expression|STRING\|( Sum )}"]
+
+140705051026992[ label="{*ArithmeticExpression|}"]
+
+140705051030400[ label="{Sum|operator:list[SumOperator]\l}"]
+
+140705051033808[ label="{Product|operator:list[ProductOperator]\l}"]
+
+140705051037216[ label="{Value|+op:INT\l}"]
+
+140705051040624[ label="{SumOperator|-\|+}"]
+
+140705051044032[ label="{ProductOperator|*\|/\|^}"]
+
+140705051047440[ label="{FunctionCall|+functionName:Function\l}"]
+
+140705051050848[ label="{Parameter|+value:OBJECT\l}"]
+
+140705051054256[ label="{Function|print\|log\|mean\|sum\|percentile\|count\|show\|target\|results}"]
+
+140705050845280[ label="{ID|}"]
+
+140705050848688[ label="{STRING|}"]
+
+140705050852096[ label="{BOOL|}"]
+
+140705050855504[ label="{INT|}"]
+
+140705050854560[ label="{FLOAT|}"]
+
+140705050858912[ label="{STRICTFLOAT|}"]
+
+140705050862320[ label="{NUMBER|}"]
+
+140705050866304[ label="{BASETYPE|}"]
+
+140705050869712[ label="{*OBJECT|}"]
+
+
+
+140705014127920 -> 140705014135312[arrowtail=diamond, dir=both, headlabel="statement 0..*"]
+140705014135312 -> 140705014138720 [dir=back]
+140705014135312 -> 140705051020752 [dir=back]
+140705014135312 -> 140705051047440 [dir=back]
+140705014135312 -> 140705051023584 [dir=back]
+140705014142704 -> 140705014138720[headlabel="data "]
+140705014142704 -> 140705051017920[arrowtail=diamond, dir=both, headlabel="args 1..*"]
+140705014146112 -> 140705014149520[arrowtail=diamond, dir=both, headlabel="query "]
+140705014149520 -> 140705051023584[arrowtail=diamond, dir=both, headlabel="maps 1..*"]
+140705014149520 -> 140705014138720[headlabel="data "]
+140705014149520 -> 140705051023584[arrowtail=diamond, dir=both, headlabel="filter 1..*"]
+140705014152928 -> 140705014138720[headlabel="data "]
+140705014152928 -> 140705051017920[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
+140705014156336 -> 140705014138720[headlabel="data "]
+140705014156336 -> 140705051017920[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
+140705049710192 -> 140705014138720[headlabel="data "]
+140705049710192 -> 140705051017920[arrowtail=diamond, dir=both, headlabel="parameters 1..*"]
+140705051017920 -> 140705051050848[arrowtail=diamond, dir=both, headlabel="value "]
+140705051023584 -> 140705051030400 [dir=back]
+140705051023584 -> 140705051047440 [dir=back]
+140705051023584 -> 140705014138720 [dir=back]
+140705051026992 -> 140705051030400 [dir=back]
+140705051030400 -> 140705051033808[arrowtail=diamond, dir=both, headlabel="op 0..*"]
+140705051033808 -> 140705051037216[arrowtail=diamond, dir=both, headlabel="op 0..*"]
+140705051047440 -> 140705051050848[arrowtail=diamond, dir=both, headlabel="exp 1..*"]
+140705050862320 -> 140705050858912 [dir=back]
+140705050862320 -> 140705050855504 [dir=back]
+140705050866304 -> 140705050862320 [dir=back]
+140705050866304 -> 140705050854560 [dir=back]
+140705050866304 -> 140705050852096 [dir=back]
+140705050866304 -> 140705050845280 [dir=back]
+140705050866304 -> 140705050848688 [dir=back]
+140705050869712 -> 140705050866304 [dir=back]
+
+}

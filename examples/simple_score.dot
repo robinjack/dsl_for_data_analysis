@@ -1,0 +1,31 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4708638032 -> 4708659152 [label="statement:0" arrowtail=diamond dir=both]
+4708659152[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4708638032 -> 4708658768 [label="statement:1" arrowtail=diamond dir=both]
+4708658768 -> 4708659152 [label="data" ]
+4708658768 -> 4708659088 [label="parameters:0" arrowtail=diamond dir=both]
+4708659088 -> 4708658512 [label="value" arrowtail=diamond dir=both]
+4708658512[label="{:Parameter|+value:str='sepal_length'\l}"]
+4708659088[label="{:KeywordParameter|+param:str='target'\l}"]
+4708658768[label="{:Train|}"]
+4708638032 -> 4708656912 [label="statement:2" arrowtail=diamond dir=both]
+4708656912 -> 4708659152 [label="data" ]
+4708656912[label="{:Test|+parameters:list=[]\l}"]
+4708638032 -> 4708655824 [label="statement:3" arrowtail=diamond dir=both]
+4708655824 -> 4708659152 [label="data" ]
+4708655824[label="{:Score|+parameters:list=[]\l}"]
+4708638032[label="{:Program|}"]
+
+}

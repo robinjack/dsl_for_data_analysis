@@ -1,0 +1,3 @@
+LOAD data "examples/iris.csv"
+ANALYSIS data sum col="sepal_length", view=10
+end

@@ -1,0 +1,42 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4744555408 -> 4744553936 [label="statement:0" arrowtail=diamond dir=both]
+4744553936[label="{d:Data|+fp:str='examples/iris.csv'\l}"]
+4744555408 -> 4744552720 [label="statement:1" arrowtail=diamond dir=both]
+4744552720 -> 4744553936 [label="data" ]
+4744552720 -> 4744554384 [label="args:0" arrowtail=diamond dir=both]
+4744554384 -> 4744554576 [label="value" arrowtail=diamond dir=both]
+4744554576[label="{:Parameter|+value:int=5\l}"]
+4744554384[label="{:KeywordParameter|+param:str='head'\l}"]
+4744552720 -> 4744554448 [label="args:1" arrowtail=diamond dir=both]
+4744554448 -> 4744655120 [label="value" arrowtail=diamond dir=both]
+4744655120[label="{:Parameter|+value:int=100\l}"]
+4744554448[label="{:KeywordParameter|+param:str='tail'\l}"]
+4744552720[label="{:Analysis|+functionName:str='print'\l}"]
+4744555408 -> 4744554704 [label="statement:2" arrowtail=diamond dir=both]
+4744554704 -> 4744553936 [label="data" ]
+4744554704 -> 4744655440 [label="parameters:0" arrowtail=diamond dir=both]
+4744655440 -> 4744656784 [label="value" arrowtail=diamond dir=both]
+4744656784[label="{:Parameter|+value:str='sepal_length'\l}"]
+4744655440[label="{:KeywordParameter|+param:str='target'\l}"]
+4744554704[label="{:Train|}"]
+4744555408 -> 4744555344 [label="statement:3" arrowtail=diamond dir=both]
+4744555344 -> 4744553936 [label="data" ]
+4744555344[label="{:Test|+parameters:list=[]\l}"]
+4744555408 -> 4744655568 [label="statement:4" arrowtail=diamond dir=both]
+4744655568 -> 4744553936 [label="data" ]
+4744655568[label="{:Score|+parameters:list=[]\l}"]
+4744555408[label="{:Program|}"]
+
+}

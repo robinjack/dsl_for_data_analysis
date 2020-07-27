@@ -1,0 +1,25 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4449101328 -> 4449124240 [label="statement:0" arrowtail=diamond dir=both]
+4449124240[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4449101328 -> 4449123024 [label="statement:1" arrowtail=diamond dir=both]
+4449123024 -> 4449124240 [label="data" ]
+4449123024 -> 4449120720 [label="parameters:0" arrowtail=diamond dir=both]
+4449120720 -> 4449122192 [label="value" arrowtail=diamond dir=both]
+4449122192[label="{:Parameter|+value:str='sepal_length'\l}"]
+4449120720[label="{:KeywordParameter|+param:str='target'\l}"]
+4449123024[label="{:Train|}"]
+4449101328[label="{:Program|}"]
+
+}

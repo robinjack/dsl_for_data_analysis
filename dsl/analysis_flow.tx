@@ -7,43 +7,87 @@ Comment:
   /\/\/.*$/
 ;
 
-Statement : Data  | Assignment | FunctionCall | Expression ;
+Statement :  Data  | Analysis | Manipulation
+| Train | Test | Score  | FunctionCall | Assignment
+//| Expression
 
-Data : name=ID "LOAD" fp=STRING;
+;
 
-//Column: data=[Data] "." column=ID;
-
-Assignment : (key=ID
-//| key=Column
-) "=" (value=Expression | value=ID);
+Assignment : (key=ID) "=" (value=Expression);
 
 Expression:
-    ArithmeticExpression| FunctionCall | STRING |  Data | ("(" ArithmeticExpression ")");
+    ArithmeticExpression |  Data | ("(" ArithmeticExpression ")");
 
 ArithmeticExpression : Sum ;
 
 Sum: op=Product (operator=SumOperator op=Product)*;
 
-Product : op=Value (operator=ProductOperator op=Value)*;
-
-Value: op=INT  |  ("(" Sum ")")
-//| Column
-;
-
-
 SumOperator:
     "-" | "+";
 
+Product : op=Value (operator=ProductOperator op=Value)*;
 ProductOperator:  "*" | "/" | "^" ;
+
+Value: op=INT  |  ("(" op=Sum ")") | op=ID ;
+
+Data : "LOAD" name=ID fp=STRING;
+Analysis: "ANALYSIS" data=[Data] functionName=[AnalysisFunction] (args*=KeywordParameter[","])?;
+
+
+Manipulation :
+    "MANIPULATION" query=DataSQL;
+
+DataSQL :
+    select;
+
+select:
+    ("SELECT" | "select")
+    ("DISTINCT" | "distinct")?
+         (maps*=BoolExp[","])
+    ("FROM" | "from") from_item+=[Data][","]
+    (("WHERE" | "where") filters=BooleanExpression)?
+    (("GROUP BY" | "group by") groups+=BooleanExpression[","])?
+    (("HAVING" | "having") having+=BooleanExpression)?
+    ";"
+    ;
+
+BoolExp: (op=BooleanExpression ("AS" | "as") colname=ID) | op=BooleanExpression ;
+BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*;
+ BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
+ NotFactor: ("NOT")? BooleanFactor;
+ BooleanFactor: BooleanLiteral | Relation;
+ BooleanLiteral: "TRUE" | "FALSE";
+ Relation: op=BoolExpression (operator=RelationalOperator op=BoolExpression)*;
+ RelationalOperator: ">" | "<" | "=" | "!=";
+ BoolExpression: Additive;
+ Additive: op=ExpProduct (operator=SumOperator op=ExpProduct)*;
+ ExpProduct: op=ExpValue (operator=ProductOperator op=ExpValue)*;
+ ExpValue: op=INT | op=ID
+ | op=BooleanExpression
+ ;
+
+Train: "TRAIN" data=[Data]  (parameters+=KeywordParameter[","])*;
+
+Test: "TEST" data=[Data]  (parameters+=KeywordParameter[","])*;
+
+Score: "SCORE" data=[Data] (parameters+=KeywordParameter[","])*;
+
+AnalysisFunction:
+    "print" | "mean" | "sum" | "count" | "percentile";
+
+KeywordParameter:
+    param=ID "=" value=Parameter;
+
+
 
 
 FunctionCall: functionName=Function "(" exp+=Parameter[","] ")";
 
 Parameter:
-    value=ID | value=STRING | value = INT | value=FLOAT;
+    value=ID | value=STRING | value = INT | value=FLOAT | value=Expression;
 
 Function:
     "print" | "log" | "mean" | "sum" | "percentile" | "count" |
-    "show" | "train" | "test" | "target" | "results"
+    "show" | "target" | "results"
     ;
 

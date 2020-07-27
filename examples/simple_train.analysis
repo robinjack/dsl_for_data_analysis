@@ -1,0 +1,3 @@
+LOAD data "examples/iris.csv"
+TRAIN data target="sepal_length"
+end

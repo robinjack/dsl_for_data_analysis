@@ -1,12 +1,73 @@
-Query : Select From Where;
+query_statement:
+    query_expr;
 
-    "SELECT"
-     colnames=Column+
-     "FROM"
-     table=Table
-     (("JOIN" join_table=Table
-     "ON" colA=Column "=" colb=Column
-     ("WHERE" Condition)
+query_expr:
+     //("WITH" with_query_name=ID "AS" ( query_expr )[","]+ )?
+   // ( select | "(" query_expr ")" | query_expr set_op query_expr )
+     //("ORDER BY" (expressions+=expression ( ASC | DESC ))?)[","])?
+     //("LIMIT" count=INT ("OFFSET" skip_rows=INT )?)?;
+     select ;
 
 
-Column: ;
+select:
+    ("SELECT" | "select")
+    ("DISTINCT" | "distinct")?
+         (expressions*=BooleanExpression[","])
+    ("FROM" | "from") from_item+=ID[","]
+    (("WHERE" | "where") BooleanExpression)?
+    (("GROUP BY" | "group by") expressions*=BooleanExpression[","])?
+    (("HAVING" | "having") bool_expressions=BooleanExpression)?;
+
+/*Expression:
+//(expression ".")? "*" | expression "AS" alias=ID |
+column_expression ;
+column_expression: Sum
+Sum: op=Product (operator=SumOperator op=Product)*;
+SumOperator: "+" | "-";
+Product: op=Value (operator=ProductOperator op=Value)*;
+ProductOperator: "*" | "/";
+Value: op=INT | ("(" Sum ")") | op=ID | Expression;
+
+
+boolExpression: op=booleanTerm ("OR" op=BooleanTerm)*;
+booleanTerm : op=notFactor ("AND" op=notFactor)*;
+notFactor: ("NOT")? booleanFactor;
+booleanFactor: op=ID | op=INT | op=STRING | boolExpression;
+*/
+
+ BooleanExpression : op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*
+ ;
+ BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
+ NotFactor: ("NOT")? BooleanFactor;
+ BooleanFactor: BooleanLiteral | Relation;
+ BooleanLiteral: "TRUE" | "FALSE";
+ Relation: op=Expression (operator=RelationalOperator op=Expression)*;
+ RelationalOperator: ">" | "<" | "=" | "!=";
+ Expression: Sum;
+ Sum: op=Product (operator=SumOperator op=Product)*;
+ SumOperator: "+" | "-";
+ Product: op=Value (operator=ProductOperator op=Value)*;
+ ProductOperator: "*" | "/";
+ Value: op=INT | op=ID | op=BooleanExpression;
+
+set_op:
+    "UNION" ("ALL" | "DISTINCT") | "INTERSECT DISTINCT" | "EXCEPT DISTINCT";
+/*
+from_item:
+    table_name [ [ AS ] alias ] [ FOR SYSTEM_TIME AS OF timestamp_expression ]  |
+    join |
+    ( query_expr ) [ [ AS ] alias ] |
+    field_path |
+    { UNNEST( array_expression ) | UNNEST( array_path ) | array_path }
+        [ [ AS ] alias ] [ WITH OFFSET [ [ AS ] alias ] ] |
+    with_query_name [ [ AS ] alias ]
+} ;
+
+join:
+    from_item [ join_type ] JOIN from_item
+    [ { ON bool_expression | USING ( join_column [, ...] ) } ];
+
+join_type:
+    { INNER | CROSS | FULL [OUTER] | LEFT [OUTER] | RIGHT [OUTER] } ;
+
+    */
