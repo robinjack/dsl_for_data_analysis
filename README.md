@@ -63,17 +63,17 @@ http://textx.github.io/textX/stable/grammar/
     * TODO - pass tests for memento [DONE]
 * Finalise DSL syntax design - 7/1 [DONE]
     * NOTES - had finished this, but then saw feedback on my proposal. Currently in the process of redoing the analysis.
-    * Need to design a BNF/CFG for the language. Can then easily create this in TextX
+    * Need to design a BNF/CFG for the language. Can then easily create this in TextX [DONE]
 * Create tests for DSL syntax - 7/6 [DONE v1]
     * TODO - 1. create tests for evaluator class. [DONE]
     * TODO - 2. create tests for program  [DONE]
     * TODO - 3. rewrite the sample code pieces to run [DONE]
 * Implement DSL syntax in TextX - 7/12 [V1 done]
-    * TODO - 1. implement evaluator class [v1 done, except manipulation]
-    * TODO - 2. implement the DSL grammar [v1 done, except manipulation]
-        * implement SELECT *
-        * implement FUNCTION CALLS on the COLUMNS
-        * implement GROUP BY
+    * TODO - 1. implement evaluator class [v1 done]
+    * TODO - 2. implement the DSL grammar [v1 done]
+        * implement SELECT * [DONE]
+        * implement FUNCTION CALLS on the COLUMNS [DONE]
+        * implement GROUP BY [DONE]
     * TODO - 3. implement evaluator class as an OOP interpreter (each class has its own evaluate method)
 * Work to pass tests - 7/31
     * TODO - 1. IN PROGRESS

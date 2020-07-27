@@ -64,6 +64,13 @@ def test_manipulation_select_filter():
     assert meta.model_from_file('examples/basic_manipulation_select_filter.analysis')
 
 
+def test_function_call_in_manipulation():
+    assert meta.model_from_file('examples/function_call_in_manipulation.analysis')
+
+def test_groupby_one_column():
+    assert meta.model_from_file('examples/groupby_one_column.analysis')
+
+
 def test_simple_train():
     assert meta.model_from_file('examples/simple_train.analysis')
 

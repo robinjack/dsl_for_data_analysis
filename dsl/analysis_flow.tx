@@ -9,8 +9,6 @@ Comment:
 
 Statement :  Data  | Analysis | Manipulation
 | Train | Test | Score  | FunctionCall | Assignment
-//| Expression
-
 ;
 
 Assignment : (key=ID) "=" (value=Expression);
@@ -51,7 +49,7 @@ select:
     ";"
     ;
 
-BoolExp: (op=BooleanExpression ("AS" | "as") colname=ID) | op=BooleanExpression ;
+BoolExp: (op=BooleanExpression ("AS" | "as") colname=ID) | "*" | op=BooleanExpression ;
 BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*;
  BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
  NotFactor: ("NOT")? BooleanFactor;
@@ -62,8 +60,7 @@ BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanT
  BoolExpression: Additive;
  Additive: op=ExpProduct (operator=SumOperator op=ExpProduct)*;
  ExpProduct: op=ExpValue (operator=ProductOperator op=ExpValue)*;
- ExpValue: op=INT | op=ID
- | op=BooleanExpression
+ ExpValue: op=FunctionCall | op=INT | op=ID | op=BooleanExpression
  ;
 
 Train: "TRAIN" data=[Data]  (parameters+=KeywordParameter[","])*;
@@ -73,7 +70,7 @@ Test: "TEST" data=[Data]  (parameters+=KeywordParameter[","])*;
 Score: "SCORE" data=[Data] (parameters+=KeywordParameter[","])*;
 
 AnalysisFunction:
-    "print" | "mean" | "sum" | "count" | "percentile";
+    "print" | "mean" | "sum" | "count" | "percentile" | "plot";
 
 KeywordParameter:
     param=ID "=" value=Parameter;
@@ -81,7 +78,7 @@ KeywordParameter:
 
 
 
-FunctionCall: functionName=Function "(" exp+=Parameter[","] ")";
+FunctionCall: functionName=Function "(" exp+=BoolExp[","] ")";
 
 Parameter:
     value=ID | value=STRING | value = INT | value=FLOAT | value=Expression;
