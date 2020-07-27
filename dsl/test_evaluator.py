@@ -51,18 +51,102 @@ def test_basic_sum_and_product_expression():
     assert result.symbol_table['f'] == 17
 
 
-# def test_arithmetic_expression():
-#     model = meta.model_from_file('examples/test_arithmetic_expression.analysis')
-#     result = Evaluator(model)
-#     result.run()
-#     assert result.symbol_table["z"] == 1
-#     assert result.symbol_table["e"] == 2
-#     assert result.symbol_table["f"] == 3
-#     assert result.symbol_table["o"] == 2.06
-#     assert result.symbol_table["x"] == 101
-#     assert result.symbol_table["y"] == 100101
+def test_arithmetic_expression():
+    model = meta.model_from_file('examples/test_arithmetic_expression.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result.symbol_table["z"] == 1
+    assert result.symbol_table["e"] == 2
+    assert result.symbol_table["f"] == 3
+    assert result.symbol_table["o"] == 2.06
+    assert result.symbol_table["x"] == 101
+    assert result.symbol_table["y"] == 100101
+
+#####################################
+# Section two - basic functionality tests
+#####################################
+
+def test_analysis_no_param():
+    model = meta.model_from_file('examples/analysis_one_param.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_analysis_one_param():
+    model = meta.model_from_file('examples/analysis_one_param.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_analysis_two_param():
+    model = meta.model_from_file('examples/analysis_two_param.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_manipulation_select():
+    model = meta.model_from_file('examples/basic_manipulation_select.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_manipulation_select_map():
+    model = meta.model_from_file('examples/basic_manipulation_select_map.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_manipulation_select_filter():
+    model = meta.model_from_file('examples/basic_manipulation_select_filter.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_function_call_in_manipulation():
+    model = meta.model_from_file('examples/function_call_in_manipulation.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_groupby_one_column():
+    model = meta.model_from_file('examples/groupby_one_column.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+def test_simple_train():
+    model = meta.model_from_file('examples/simple_train.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+def test_simple_test():
+    model = meta.model_from_file('examples/simple_test.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+def test_simple_score():
+    model = meta.model_from_file('examples/simple_score.analysis')
+    result = Evaluator(model)
+    result.run()
+    assert result
+
+
+#####################################
+# Section three - MVP tests
+#####################################
+
 """
-Secondly, is the analysis workflow. 
+Thirdly, is the analysis workflow MVP files.
 These three tests will comprise the MVP of the product.
 There are three basic tests:
 1. The most basic analysis possible (look at the data, choose Y, and predict)
@@ -78,48 +162,24 @@ There are three basic tests:
     Same as above, but with two manipulations done,
     Inspect the results + compare them
 """
-
-
-#####################################
-# Section two - MVP tests
-#####################################
-"""
 def test_simple_program():
     model = meta.model_from_file('examples/test_program.analysis')
     result = Evaluator(model)
     result.run()
-#    TODO: add in assertion
+    assert result
 
 def test_simple_manipulation():
     model = meta.model_from_file('examples/simple_manipulation.analysis')
     result = Evaluator(model)
     result.run()
-#    TODO: add in assertion
+    assert result
 
 def test_two_manipulations_and_rewind():
     model = meta.model_from_file('examples/two_manipulations_and_rewind.analysis')
     result = Evaluator(model)
     result.run()
-#    TODO: add in assertion
+    assert result
 
-
-#    TODO: add in assertion
-
-def test_simple_manipulation():
-    model = meta.model_from_file('examples/simple_manipulation.analysis')
-    result = Evaluator(model)
-    result.run()
-
-
-#    TODO: add in assertion
-
-def test_two_manipulations_and_rewind():
-    model = meta.model_from_file('examples/two_manipulations_and_rewind.analysis')
-    result = Evaluator(model)
-    result.run()
-#    TODO: add in assertion
-
-"""
 
 
 
