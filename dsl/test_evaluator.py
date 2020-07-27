@@ -12,8 +12,10 @@ loading, analysing, manipulating, training, testing, reviewing.
 
 Second is the analysis flow
 
-
 """
+
+    
+
 
 
 #####################################
@@ -59,7 +61,6 @@ def test_basic_sum_and_product_expression():
 #     assert result.symbol_table["o"] == 2.06
 #     assert result.symbol_table["x"] == 101
 #     assert result.symbol_table["y"] == 100101
-
 """
 Secondly, is the analysis workflow. 
 These three tests will comprise the MVP of the product.
@@ -87,6 +88,19 @@ def test_simple_program():
     model = meta.model_from_file('examples/test_program.analysis')
     result = Evaluator(model)
     result.run()
+#    TODO: add in assertion
+
+def test_simple_manipulation():
+    model = meta.model_from_file('examples/simple_manipulation.analysis')
+    result = Evaluator(model)
+    result.run()
+#    TODO: add in assertion
+
+def test_two_manipulations_and_rewind():
+    model = meta.model_from_file('examples/two_manipulations_and_rewind.analysis')
+    result = Evaluator(model)
+    result.run()
+#    TODO: add in assertion
 
 
 #    TODO: add in assertion
