@@ -1,0 +1,25 @@
+ //https://compilers.iecc.com/crenshaw/tutor6.txt
+//<b-expression> ::= <b-term> [<orop> <b-term>]*
+ //<b-term>       ::= <not-factor> [AND <not-factor>]*
+ //<not-factor>   ::= [NOT] <b-factor>
+ //<b-factor>     ::= <b-literal> | <b-variable> | <relation>
+ //<relation>     ::= | <expression> [<relop> <expression]
+ //<expression>   ::= <term> [<addop> <term>]*
+ //<term>         ::= <signed factor> [<mulop> factor]*
+// <signed factor>::= [<addop>] <factor>
+// <factor>       ::= <integer> | <variable> | (<b-expression>)
+
+ BooleanExpression : "(" op=BooleanExpression ")" | op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*
+ ;
+ BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
+ NotFactor: ("NOT")? BooleanFactor;
+ BooleanFactor: BooleanLiteral | Relation;
+ BooleanLiteral: "TRUE" | "FALSE";
+ Relation: op=Expression (operator=RelationalOperator op=Expression)*;
+ RelationalOperator: ">" | "<" | "=" | "!=";
+ Expression: Sum;
+ Sum: op=Product (operator=SumOperator op=Product)*;
+ SumOperator: "+" | "-";
+ Product: op=Value (operator=ProductOperator op=Value)*;
+ ProductOperator: "*" | "/";
+ Value: op=INT | op=ID | op=BooleanExpression;

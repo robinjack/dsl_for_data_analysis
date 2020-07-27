@@ -7,17 +7,64 @@ Comment:
   /\/\/.*$/
 ;
 
-Statement : Data  | Analysis | Manipulation | Train | Test | Score | Assignment | FunctionCall | Expression ;
+Statement :  Data  | Analysis | Manipulation
+| Train | Test | Score  | FunctionCall | Assignment
+//| Expression
+
+;
+
+Assignment : (key=ID) "=" (value=Expression);
+
+Expression:
+    ArithmeticExpression |  Data | ("(" ArithmeticExpression ")");
+
+ArithmeticExpression : Sum ;
+
+Sum: op=Product (operator=SumOperator op=Product)*;
+
+SumOperator:
+    "-" | "+";
+
+Product : op=Value (operator=ProductOperator op=Value)*;
+ProductOperator:  "*" | "/" | "^" ;
+
+Value: op=INT  |  ("(" op=Sum ")") | op=ID ;
 
 Data : "LOAD" name=ID fp=STRING;
-Analysis: "ANALYSIS" data=[Data] functionName=AnalysisFunction (args*=KeywordParameter[","])?;
+Analysis: "ANALYSIS" data=[Data] functionName=[AnalysisFunction] (args*=KeywordParameter[","])?;
+
+
 Manipulation :
     "MANIPULATION" query=DataSQL;
 
 DataSQL :
-    "SELECT" maps+=ID[","]
-    "FROM"  data=[Data]
-    ("WHERE" filter+=Expression);
+    select;
+
+select:
+    ("SELECT" | "select")
+    ("DISTINCT" | "distinct")?
+         (maps*=BoolExp[","])
+    ("FROM" | "from") from_item+=[Data][","]
+    (("WHERE" | "where") filters=BooleanExpression)?
+    (("GROUP BY" | "group by") groups+=BooleanExpression[","])?
+    (("HAVING" | "having") having+=BooleanExpression)?
+    ";"
+    ;
+
+BoolExp: (op=BooleanExpression ("AS" | "as") colname=ID) | op=BooleanExpression ;
+BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*;
+ BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
+ NotFactor: ("NOT")? BooleanFactor;
+ BooleanFactor: BooleanLiteral | Relation;
+ BooleanLiteral: "TRUE" | "FALSE";
+ Relation: op=BoolExpression (operator=RelationalOperator op=BoolExpression)*;
+ RelationalOperator: ">" | "<" | "=" | "!=";
+ BoolExpression: Additive;
+ Additive: op=ExpProduct (operator=SumOperator op=ExpProduct)*;
+ ExpProduct: op=ExpValue (operator=ProductOperator op=ExpValue)*;
+ ExpValue: op=INT | op=ID
+ | op=BooleanExpression
+ ;
 
 Train: "TRAIN" data=[Data]  (parameters+=KeywordParameter[","])*;
 
@@ -32,33 +79,12 @@ KeywordParameter:
     param=ID "=" value=Parameter;
 
 
-// TODO: Will keep the below for now, but it might be worth
-// looking into using eval() rather than specifying a limited grammar
-
-Assignment : (key=ID) "=" (value=Expression | value=ID);
-
-Expression:
-    ArithmeticExpression| FunctionCall | STRING |  Data | ("(" ArithmeticExpression ")");
-
-ArithmeticExpression : Sum ;
-
-Sum: op=Product (operator=SumOperator op=Product)*;
-
-Product : op=Value (operator=ProductOperator op=Value)*;
-
-Value: op=INT  |  ("(" Sum ")");
-
-
-SumOperator:
-    "-" | "+";
-
-ProductOperator:  "*" | "/" | "^" ;
 
 
 FunctionCall: functionName=Function "(" exp+=Parameter[","] ")";
 
 Parameter:
-    value=ID | value=STRING | value = INT | value=FLOAT;
+    value=ID | value=STRING | value = INT | value=FLOAT | value=Expression;
 
 Function:
     "print" | "log" | "mean" | "sum" | "percentile" | "count" |

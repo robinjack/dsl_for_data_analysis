@@ -1,0 +1,18 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4678659280 -> 4678746896 [label="statement:0" arrowtail=diamond dir=both]
+4678746896[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4678659280[label="{:Program|}"]
+
+}

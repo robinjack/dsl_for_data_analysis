@@ -1,4 +1,5 @@
 LOAD data "examples/iris.csv"
-MANIPULATION data
-    SELECT * FROM data
-    WHERE sepal_length > 3
+MANIPULATION
+    SELECT col FROM data
+    WHERE sepal_length = 1;
+end

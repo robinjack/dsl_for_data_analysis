@@ -1,0 +1,21 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4404612304 -> 4404632272 [label="statement:0" arrowtail=diamond dir=both]
+4404632272[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4404612304 -> 4404631440 [label="statement:1" arrowtail=diamond dir=both]
+4404631440 -> 4404632272 [label="data" ]
+4404631440[label="{:Analysis|+functionName:str='print'\largs:list=[]\l}"]
+4404612304[label="{:Program|}"]
+
+}

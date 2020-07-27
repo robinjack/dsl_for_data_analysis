@@ -1,0 +1,37 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4530451344 -> 4530389136 [label="statement:0" arrowtail=diamond dir=both]
+4530389136[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4530451344 -> 4530392208 [label="statement:1" arrowtail=diamond dir=both]
+4530392208 -> 4530389840 [label="query" arrowtail=diamond dir=both]
+4530389840 -> 4530389328 [label="maps:0" arrowtail=diamond dir=both]
+4530389328 -> 4530391440 [label="op" arrowtail=diamond dir=both]
+4530391440 -> 4530426384 [label="op:0" arrowtail=diamond dir=both]
+4530426384 -> 4530428688 [label="op:0" arrowtail=diamond dir=both]
+4530428688 -> 4530427920 [label="op:0" arrowtail=diamond dir=both]
+4530427920 -> 4530426320 [label="op:0" arrowtail=diamond dir=both]
+4530426320 -> 4530428624 [label="op:0" arrowtail=diamond dir=both]
+4530428624[label="{:ExpValue|+op:str='col1'\l}"]
+4530426320[label="{:ExpProduct|operator:list=[]\l}"]
+4530427920[label="{:Additive|operator:list=[]\l}"]
+4530428688[label="{:Relation|operator:list=[]\l}"]
+4530426384[label="{:BooleanTerm|operator:list=[]\l}"]
+4530391440[label="{:BooleanExpression|operator:list=[]\l}"]
+4530389328[label="{:BoolExp|+colname:str=''\l}"]
+4530389840 -> 4530389136 [label="from_item:0" ]
+4530389840[label="{:select|+groups:list=[]\l+having:list=[]\l}"]
+4530392208[label="{:Manipulation|}"]
+4530451344[label="{:Program|}"]
+
+}

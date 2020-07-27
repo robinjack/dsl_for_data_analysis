@@ -1,0 +1,17 @@
+Program:
+   statements*=Statement;
+
+Statement: Assignment | Expression;
+
+Assignment: (key=ID) "=" value=Expression;
+
+Expression: Sum;
+
+Sum: op=Product (operator=SumOperator op=Product)*;
+
+SumOperator: "+" | "-";
+
+Product: op=Value (operator=ProductOperator op=Value)*;
+ProductOperator: "*" | "/";
+
+Value: op=INT | ("(" Sum ")") | op=ID;

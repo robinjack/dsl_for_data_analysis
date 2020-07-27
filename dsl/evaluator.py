@@ -181,7 +181,7 @@ class Evaluator:
 if __name__ == "__main__":
 
     meta = metamodel_from_file('dsl/analysis_flow.tx')
-    model = meta.model_from_file('examples/test_program.analysis')
+    model = meta.model_from_file('examples/test_load.analysis')
     result = Evaluator(model)
     result.run()
 

@@ -1,8 +1,8 @@
 LOAD data  "examples/iris.csv"
 print(data)
 s = 1
-MANIPULATION SELECT *, sepal_length + 1 as target
-FROM data WHERE sepal_length + 1 > 3
+MANIPULATION SELECT sepal_length + 1 as target
+FROM data WHERE sepal_length + 1 > 3;
 TRAIN data
 TEST data
 SCORE data

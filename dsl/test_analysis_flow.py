@@ -65,13 +65,13 @@ def test_manipulation_select_filter():
 
 
 def test_simple_train():
-    assert meta.model_from_file('simple_train.analysis')
+    assert meta.model_from_file('examples/simple_train.analysis')
 
 def test_simple_test():
-    assert meta.model_from_file('simple_test.analysis')
+    assert meta.model_from_file('examples/simple_test.analysis')
 
 def test_simple_score():
-    assert meta.model_from_file('simple_score.analysis')
+    assert meta.model_from_file('examples/simple_score.analysis')
 
 
 #####################################
@@ -90,3 +90,7 @@ def test_two_manipulations_and_rewind():
 
 
 
+
+if __name__ == "__main__":
+    meta = metamodel_from_file('analysis_flow.tx')
+    meta.model_from_file('examples/test_load.analysis')

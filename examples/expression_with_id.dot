@@ -1,0 +1,70 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4520932816 -> 4521015440 [label="statement:0" arrowtail=diamond dir=both]
+4521015440 -> 4521016592 [label="value" arrowtail=diamond dir=both]
+4521016592 -> 4521014928 [label="op:0" arrowtail=diamond dir=both]
+4521014928 -> 4521015120 [label="op:0" arrowtail=diamond dir=both]
+4521015120[label="{:Value|+op:int=1\l}"]
+4521014928[label="{:Product|operator:list=[]\l}"]
+4521016592[label="{:Sum|operator:list=[]\l}"]
+4521015440[label="{:Assignment|+key:str='x'\l}"]
+4520932816 -> 4521015056 [label="statement:1" arrowtail=diamond dir=both]
+4521015056 -> 4521014032 [label="value" arrowtail=diamond dir=both]
+4521014032 -> 4521013840 [label="op:0" arrowtail=diamond dir=both]
+4521013840 -> 4521027728 [label="op:0" arrowtail=diamond dir=both]
+4521027728 -> 4521026192 [label="op" arrowtail=diamond dir=both]
+4521026192 -> 4521029136 [label="op:0" arrowtail=diamond dir=both]
+4521029136 -> 4521027088 [label="op:0" arrowtail=diamond dir=both]
+4521027088[label="{:Value|+op:str='x'\l}"]
+4521029136[label="{:Product|operator:list=[]\l}"]
+4521026192 -> 4521029072 [label="op:1" arrowtail=diamond dir=both]
+4521029072 -> 4521028048 [label="op:0" arrowtail=diamond dir=both]
+4521028048 -> 4521137552 [label="op" arrowtail=diamond dir=both]
+4521137552 -> 4521137104 [label="op:0" arrowtail=diamond dir=both]
+4521137104 -> 4521137488 [label="op:0" arrowtail=diamond dir=both]
+4521137488[label="{:Value|+op:int=1\l}"]
+4521137104[label="{:Product|operator:list=[]\l}"]
+4521137552 -> 4521137040 [label="op:1" arrowtail=diamond dir=both]
+4521137040 -> 4521138320 [label="op:0" arrowtail=diamond dir=both]
+4521138320 -> 4521138512 [label="op" arrowtail=diamond dir=both]
+4521138512 -> 4521138448 [label="op:0" arrowtail=diamond dir=both]
+4521138448 -> 4521137360 [label="op:0" arrowtail=diamond dir=both]
+4521137360[label="{:Value|+op:str='x'\l}"]
+4521138448 -> 4521137232 [label="op:1" arrowtail=diamond dir=both]
+4521137232 -> 4521136720 [label="op" arrowtail=diamond dir=both]
+4521136720 -> 4521139152 [label="op:0" arrowtail=diamond dir=both]
+4521139152 -> 4521139344 [label="op:0" arrowtail=diamond dir=both]
+4521139344[label="{:Value|+op:int=2\l}"]
+4521139152[label="{:Product|operator:list=[]\l}"]
+4521136720 -> 4521139280 [label="op:1" arrowtail=diamond dir=both]
+4521139280 -> 4521139472 [label="op:0" arrowtail=diamond dir=both]
+4521139472[label="{:Value|+op:int=5\l}"]
+4521139280[label="{:Product|operator:list=[]\l}"]
+4521136720[label="{:Sum|operator:list=['+']\l}"]
+4521137232[label="{:Value|}"]
+4521138448[label="{:Product|operator:list=['*']\l}"]
+4521138512[label="{:Sum|operator:list=[]\l}"]
+4521138320[label="{:Value|}"]
+4521137040[label="{:Product|operator:list=[]\l}"]
+4521137552[label="{:Sum|operator:list=['+']\l}"]
+4521028048[label="{:Value|}"]
+4521029072[label="{:Product|operator:list=[]\l}"]
+4521026192[label="{:Sum|operator:list=['+']\l}"]
+4521027728[label="{:Value|}"]
+4521013840[label="{:Product|operator:list=[]\l}"]
+4521014032[label="{:Sum|operator:list=[]\l}"]
+4521015056[label="{:Assignment|+key:str='z'\l}"]
+4520932816[label="{:Program|}"]
+
+}
