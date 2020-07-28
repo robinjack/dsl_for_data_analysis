@@ -14,6 +14,10 @@ class Evaluator:
     It accepts a model, and then iterates over the "statements",
     evaluating each one as it goes.
 
+    The model assumes that it will receive only objects that
+    have a .evaluate() method.
+
+
 
     """
     def __init__(self, model=None):
