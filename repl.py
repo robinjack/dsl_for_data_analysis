@@ -12,6 +12,7 @@ Output of REPL:
 from textx import metamodel_from_file
 from dsl.evaluator import Evaluator
 from semantic_model.memento import *
+from dsl.analysis_flow_processor import OBJ_PROCESSORS
 
 def revert(caretaker):
     id_to_load = input()
@@ -35,6 +36,7 @@ def repl(params=None):
     :return:
     """
     meta = metamodel_from_file('dsl/analysis_flow.tx')
+    meta.register_obj_processors(OBJ_PROCESSORS)
     statement=""
 
     evaluator = Evaluator()
@@ -54,7 +56,7 @@ def repl(params=None):
                 statement_model = meta.model_from_str(statement_to_run + "     end")
                 statement = statement_to_run
                 evaluator.update_model(statement_model)
-                evaluator.run()
+                evaluator.evaluate()
                 originator.set_state(evaluator, new_statement)
                 caretaker.backup()
             except Exception as e:

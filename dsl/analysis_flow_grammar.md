@@ -83,7 +83,7 @@ you want to manipulate the data to improve your model.
 You might do this in the following ways:
 1. Filter
 2. Map
-3. Group [optional - will not include for v1]
+3. Group 
 
 We will look to manipulate the data in a SQL-like language.
 SELECT *, col1 + 1 as new_col from $data
@@ -122,6 +122,4 @@ SCORE $DATA function=$FUNCTION
 
 
 TODO: 
-1. Rewrite grammar to match the above
-2. Rewrite all the sample pieces of code to match the above
-3. Add in shortcuts (i.e. M for MANIPULATION)
+1. Add in shortcuts (i.e. M for MANIPULATION)

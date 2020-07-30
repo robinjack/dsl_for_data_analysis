@@ -82,4 +82,6 @@ http://textx.github.io/textX/stable/grammar/
 * Incorporate updates to DSL - 8/15
 * Write report 8/30
 
+TODO: SHARE THE GITHUB REPOSITORY WITH CARSTEN V SOON   
+
 

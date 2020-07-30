@@ -14,19 +14,23 @@ Statement :  Data  | Analysis | Manipulation
 Assignment : (key=ID) "=" (value=Expression);
 
 Expression:
-    ArithmeticExpression |  Data | ("(" ArithmeticExpression ")");
+    ArithmeticExpression |  Data | ("(" ArithmeticExpression ")") |
+    BooleanExpression;
+
+
 
 ArithmeticExpression : Sum ;
-
 Sum: op=Product (operator=SumOperator op=Product)*;
+Product : op=PowValue (operator=ProductOperator op=PowValue)*;
+PowValue: op=Value (operator=PowerOperator op=Value)*;
+Value: op=INT  |  ("(" op=Sum ")") | op=ID ;
 
 SumOperator:
     "-" | "+";
+ProductOperator:  "*" | "/" ;
+PowerOperator: "^";
 
-Product : op=Value (operator=ProductOperator op=Value)*;
-ProductOperator:  "*" | "/" | "^" ;
 
-Value: op=INT  |  ("(" op=Sum ")") | op=ID ;
 
 Data : "LOAD" name=ID fp=STRING;
 Analysis: "ANALYSIS" data=[Data] functionName=[AnalysisFunction] (args*=KeywordParameter[","])?;
@@ -40,9 +44,9 @@ DataSQL :
 
 select:
     ("SELECT" | "select")
-    ("DISTINCT" | "distinct")?
+    ("DISTINCT" | optional="distinct")?
          (maps*=BoolExp[","])
-    ("FROM" | "from") from_item+=[Data][","]
+    ("FROM" | "from") from_items+=[Data][","]
     (("WHERE" | "where") filters=BooleanExpression)?
     (("GROUP BY" | "group by") groups+=BooleanExpression[","])?
     (("HAVING" | "having") having+=BooleanExpression)?
@@ -59,7 +63,8 @@ BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanT
  RelationalOperator: ">" | "<" | "=" | "!=";
  BoolExpression: Additive;
  Additive: op=ExpProduct (operator=SumOperator op=ExpProduct)*;
- ExpProduct: op=ExpValue (operator=ProductOperator op=ExpValue)*;
+ ExpProduct: op=ExpPower (operator=ProductOperator op=ExpPower)*;
+ ExpPower: op=ExpValue (operator=PowerOperator op=ExpValue)*;
  ExpValue: op=FunctionCall | op=INT | op=ID | op=BooleanExpression
  ;
 
