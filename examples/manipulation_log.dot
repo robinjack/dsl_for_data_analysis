@@ -1,0 +1,45 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4539940944 -> 4539941968 [label="statement:0" arrowtail=diamond dir=both]
+4539941968[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4539940944 -> 4539944208 [label="statement:1" arrowtail=diamond dir=both]
+4539944208 -> 4539944080 [label="query" arrowtail=diamond dir=both]
+4539944080 -> 4539941072 [label="maps:0" arrowtail=diamond dir=both]
+4539941072 -> 4539944336 [label="colname" arrowtail=diamond dir=both]
+4539944336 -> 4539944720 [label="op" arrowtail=diamond dir=both]
+4539944720 -> 4539781520 [label="exp:0" arrowtail=diamond dir=both]
+4539781520 -> 4539784016 [label="op:0" arrowtail=diamond dir=both]
+4539784016 -> 4539785168 [label="op:0" arrowtail=diamond dir=both]
+4539785168 -> 4539741456 [label="op:0" arrowtail=diamond dir=both]
+4539741456 -> 4539743056 [label="op:0" arrowtail=diamond dir=both]
+4539743056 -> 4539740432 [label="op:0" arrowtail=diamond dir=both]
+4539740432 -> 4539740944 [label="op:0" arrowtail=diamond dir=both]
+4539740944[label="{:ExpValue|+op:str='sepal_length'\l}"]
+4539740432[label="{:ExpPower|operator:list=[]\l}"]
+4539743056[label="{:ExpProduct|operator:list=[]\l}"]
+4539741456[label="{:Additive|operator:list=[]\l}"]
+4539785168[label="{:Relation|operator:list=[]\l}"]
+4539784016[label="{:BooleanTerm|operator:list=[]\l}"]
+4539781520[label="{:BooleanExpression|operator:list=[]\l}"]
+4539944720[label="{:FunctionCall|+functionName:str='log'\l}"]
+4539944336[label="{:ExpValue|}"]
+4539941072[label="{:ColExp|}"]
+4539944080 -> 4539941968 [label="from_items:0" ]
+4539944080[label="{:Select|+optional:str=''\l+groups:list=[]\l+having:list=[]\l}"]
+4539944208[label="{data2:Manipulation|}"]
+4539940944 -> 4539781456 [label="statement:2" arrowtail=diamond dir=both]
+4539781456[label="{:Analysis|+data:str='data2'\l+functionName:str='print'\largs:list=[]\l}"]
+4539940944[label="{:Program|}"]
+
+}
