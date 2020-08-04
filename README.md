@@ -74,9 +74,15 @@ http://textx.github.io/textX/stable/grammar/
         * implement SELECT * [DONE]
         * implement FUNCTION CALLS on the COLUMNS [DONE]
         * implement GROUP BY [DONE]
-    * TODO - 3. implement evaluator class as an OOP interpreter (each class has its own evaluate method)
+    * TODO - 3. implement evaluator class as an OOP interpreter (each class has its own evaluate method) [DONE]
+    * TODO: pass PLOT and GROUP BY tests
+    * TODO: make analysis functions more usable
 * Work to pass tests - 7/31
-    * TODO - 1. IN PROGRESS
+    * TODO: 2020-08-02
+    * 1. Get the tests all working (they currently just test if things work) [DONE]
+    * 2. Rewrite some tests to ensure total accuracy of output
+    * 3. Add additional tests in order to increase test coverage
+    * 3. Get the REPL working with REVERT
 * Gather user feedback - 8/11
 * Summarise user feedback - 8/15
 * Incorporate updates to DSL - 8/15

@@ -36,15 +36,6 @@ class Evaluator:
         """
         self.model.evaluate(self.model, self.symbol_table)
         return self
-        # if type(statement) == list:
-        #     return (self.evaluate(s) for s in statement)
-        #
-        # elif hasattr(statement, '_tx_fqn'):
-        #     return self.function_table[statement._tx_fqn](statement)
-        # elif statement in self.symbol_table:
-        #     return self.symbol_table[statement]
-        # else:
-        #     return statement
 
     def update_model(self, model):
         self.model = model
@@ -54,7 +45,14 @@ class Evaluator:
 if __name__ == "__main__":
     meta = metamodel_from_file('dsl/analysis_flow.tx')
     meta.register_obj_processors(OBJ_PROCESSORS)
-    model = meta.model_from_file('examples/test_order_of_operations.analysis')
+    # model = meta.model_from_file('examples/simple_manipulation.analysis')
+    model = meta.model_from_str("""
+    LOAD data  "examples/iris.csv"
+    MANIPULATION SELECT species, sum(petal_length) as summed_petal_length
+    from data group by species; -> new_data
+    print(new_data)
+    end
+    """)
     result = Evaluator(model)
     result.evaluate()
 

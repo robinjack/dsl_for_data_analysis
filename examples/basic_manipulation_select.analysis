@@ -1,4 +1,4 @@
 LOAD data "examples/iris.csv"
 MANIPULATION
-    SELECT col1 FROM data;
+    SELECT sepal_length FROM data;
 end

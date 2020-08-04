@@ -1,8 +1,9 @@
 from semantic_model.data import *
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-# setup test dataset
+from pandas.testing import assert_frame_equal
 
+# setup test dataset
 test_data = Data('examples/iris.csv')
 df = pd.read_csv('examples/iris.csv')
 
@@ -48,6 +49,15 @@ def test_map():
 def test_filter():
     filtered_data = test_data.filter('sepal_length', lambda x: x < 3)
     assert len(filtered_data.data) < len(test_data.data)
+
+def test_groupby():
+    test_data = Data('examples/iris.csv')
+    df = pd.read_csv('examples/iris.csv')
+
+    tdg = pd.DataFrame(test_data.groupby('species', 'petal_length', 'mean').data)
+    dfg = pd.DataFrame(df.groupby('species').petal_length.mean())
+    assert_frame_equal(tdg, dfg)
+
 
 
 def test_train():

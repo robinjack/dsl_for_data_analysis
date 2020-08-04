@@ -64,6 +64,9 @@ class Data :
     def get_columns(self):
         return self.data.columns
 
+    def get_column(self, col):
+        return self.data[col]
+
 
     # Analysis functions
 
@@ -86,10 +89,22 @@ class Data :
         self.data[col] = [func(val) for val in self.data[col].values]
         return self
 
+    def set_column(self, col, value):
+        self.data[col] = value
+        return self
+
+
     def filter(self, col, cond):
         filtered_data = deepcopy(self)
         filtered_data.data = filtered_data.data[cond(filtered_data.data[col])]
         return filtered_data
+
+    def groupby(self, group_cols, aggregation_col,
+                aggregation):
+        grouped_self = deepcopy(self)
+        grouped_self.data = grouped_self.data.groupby(
+            group_cols).agg({aggregation_col: aggregation})
+        return grouped_self
 
     # Training functions
 

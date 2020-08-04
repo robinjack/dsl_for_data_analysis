@@ -11,6 +11,8 @@ I have managed to get expression parsing working in order to create an ast,
 as long as 
 
 
+
+
 As of 2020-07-15, there is now a functional version of the most simple form of data analysis.
 Namely, you look at the data, you choose which variable to train it on, and you
 

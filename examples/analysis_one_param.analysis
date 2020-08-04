@@ -1,3 +1,3 @@
 LOAD data "examples/iris.csv"
-ANALYSIS data sum target="sepal_length"
+ANALYSIS data sum col="sepal_length"
 end

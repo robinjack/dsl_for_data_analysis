@@ -1,0 +1,5 @@
+LOAD data "examples/iris.csv"
+MANIPULATION
+    SELECT sepal_length + 1 as sepal_length FROM data;
+    -> new_data
+end

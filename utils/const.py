@@ -9,6 +9,7 @@ ORIGINATOR_TYPES = {'data': 'DataOriginator',
 
 GRAMMAR_FILE_PATH = 'dsl/analysis_flow.tx'
 
+
 CLASSNAMES = ['Program',
             'Statement',
             'Data',
@@ -31,12 +32,40 @@ CLASSNAMES = ['Program',
             'Product',
             'Parameter',
             'Analysis',
+            'AnalysisFunction',
             'Manipulation',
             'Train',
             'Test',
             'Score',
             'KeywordParameter',
             'Parameter',
-              'PowValue'
+              'PowValue',
+              'Select',
+              'ColExp',
+              'BoolExp',
+                'ExpValue',
+                'ExpPower',
+                'ExpProduct',
+                'Additive',
+                'Relation',
+                'BooleanTerm',
+                'BooleanExpression',
+                'Print',
+                'Mean',
+                'Sum',
+                'Count',
+                'Percentile',
+                'Plot',
                ]
+
+
+SELECT_ALL_OPERATOR= "*"
+
+CURRENT_QUERY_DATASET = 'current_query_dataset'
+
+
+
+
+
+
 

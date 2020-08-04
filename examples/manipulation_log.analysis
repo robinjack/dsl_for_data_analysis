@@ -1,0 +1,5 @@
+LOAD data "examples/iris.csv"
+    MANIPULATION SELECT
+    log(sepal_length) FROM data; -> data2
+    ANALYSIS data2 print
+    end

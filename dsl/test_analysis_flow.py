@@ -92,7 +92,7 @@ def test_simple_manipulation_flow():
     assert meta.model_from_file('examples/simple_manipulation.analysis')
 
 def test_two_manipulations_and_rewind():
-    assert meta.model_from_file('examples/two_manipulations_and_rewind.analysis')
+    assert meta.model_from_file('examples/two_manipulations.analysis')
 
 
 

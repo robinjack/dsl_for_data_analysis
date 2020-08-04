@@ -54,7 +54,7 @@ Example:
 
 ANALYSIS $DATA VIEW column=$COLNAME, function=$FUNCTION
 ANALYSIS $DATA SUMMARISE column=$COLNAME, function=$FUNCTION
-ANALYSIS $DATA PLOT kind=$PLOTKIND
+ANALYSIS $DATA PLOT kind=$PLOTKIND columns=$COL1,$COL2
 
 ## Summary statistics
 We will begin with a simple language, that will just allow us to

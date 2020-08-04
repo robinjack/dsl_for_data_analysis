@@ -15,7 +15,7 @@ Assignment : (key=ID) "=" (value=Expression);
 
 Expression:
     ArithmeticExpression |  Data | ("(" ArithmeticExpression ")") |
-    BooleanExpression;
+    BooleanExpression | ("(" BooleanExpression ")");
 
 
 
@@ -33,49 +33,57 @@ PowerOperator: "^";
 
 
 Data : "LOAD" name=ID fp=STRING;
-Analysis: "ANALYSIS" data=[Data] functionName=[AnalysisFunction] (args*=KeywordParameter[","])?;
+Analysis: "ANALYSIS" data=ID functionName=[AnalysisFunction] (args*=KeywordParameter[","])?;
 
 
 Manipulation :
-    "MANIPULATION" query=DataSQL;
+    "MANIPULATION" query=DataSQL ("->" name=ID)?;
 
 DataSQL :
-    select;
+    Select;
 
-select:
+Select:
     ("SELECT" | "select")
     ("DISTINCT" | optional="distinct")?
-         (maps*=BoolExp[","])
-    ("FROM" | "from") from_items+=[Data][","]
+         (maps*=ColExp[","])
+    ("FROM" | "from") from_items+=ID[","]
     (("WHERE" | "where") filters=BooleanExpression)?
-    (("GROUP BY" | "group by") groups+=BooleanExpression[","])?
+    (("GROUP BY" | "group by") groups+=ID[","])?
     (("HAVING" | "having") having+=BooleanExpression)?
     ";"
     ;
 
-BoolExp: (op=BooleanExpression ("AS" | "as") colname=ID) | "*" | op=BooleanExpression ;
+ColExp :
+    (op=BooleanExpression ("AS" | "as") colname=ID) | colname=ExpValue | colname="*";
+BoolExp: BooleanExpression | Analysis;
 BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*;
  BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
  NotFactor: ("NOT")? BooleanFactor;
  BooleanFactor: BooleanLiteral | Relation;
  BooleanLiteral: "TRUE" | "FALSE";
  Relation: op=BoolExpression (operator=RelationalOperator op=BoolExpression)*;
- RelationalOperator: ">" | "<" | "=" | "!=";
+ RelationalOperator: ">" | "<" | "=" | "!=" | "<=" | ">=";
  BoolExpression: Additive;
  Additive: op=ExpProduct (operator=SumOperator op=ExpProduct)*;
  ExpProduct: op=ExpPower (operator=ProductOperator op=ExpPower)*;
  ExpPower: op=ExpValue (operator=PowerOperator op=ExpValue)*;
- ExpValue: op=FunctionCall | op=INT | op=ID | op=BooleanExpression
+ ExpValue: op=FunctionCall | op=INT | op=ID | ("(" op=BooleanExpression ")")
  ;
 
-Train: "TRAIN" data=[Data]  (parameters+=KeywordParameter[","])*;
+Train: "TRAIN" data=ID  (parameters+=KeywordParameter[","])*;
 
-Test: "TEST" data=[Data]  (parameters+=KeywordParameter[","])*;
+Test: "TEST" data=ID  (parameters+=KeywordParameter[","])*;
 
-Score: "SCORE" data=[Data] (parameters+=KeywordParameter[","])*;
+Score: "SCORE" data=ID (parameters+=KeywordParameter[","])*;
 
-AnalysisFunction:
-    "print" | "mean" | "sum" | "count" | "percentile" | "plot";
+AnalysisFunction: Print | Mean | Sum | Count | Percentile | Plot;
+
+Print  : "print" ;
+Mean  : "mean" ;
+Sum  : "sum" ;
+Count  : "count" ;
+Percentile  : "percentile" ;
+Plot  : "plot";
 
 KeywordParameter:
     param=ID "=" value=Parameter;
@@ -89,7 +97,9 @@ Parameter:
     value=ID | value=STRING | value = INT | value=FLOAT | value=Expression;
 
 Function:
-    "print" | "log" | "mean" | "sum" | "percentile" | "count" |
-    "show" | "target" | "results"
+    "print" | "log" |
+    "mean" | "sum" |
+     "percentile" |"count" |
+    "show" | "target"
     ;
 

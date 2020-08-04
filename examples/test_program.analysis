@@ -1,8 +1,12 @@
 LOAD data  "examples/iris.csv"
-print(data)
+ANALYSIS data print
+ANALYSIS data sum col=sepal_length
 s = 1
-//target(data, "sepal_length")
-TRAIN data
-TEST data
-SCORE data
+MANIPULATION
+    SELECT *, sepal_length + 1 as sepal_length2
+    from data; -> data2
+TRAIN data2 target=sepal_length
+TEST data2
+SCORE data2
+ANALYSIS data2 print
 end
