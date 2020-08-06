@@ -48,9 +48,10 @@ if __name__ == "__main__":
     # model = meta.model_from_file('examples/simple_manipulation.analysis')
     model = meta.model_from_str("""
     LOAD data  "examples/iris.csv"
-    MANIPULATION SELECT species, sum(petal_length) as summed_petal_length
-    from data group by species; -> new_data
-    print(new_data)
+    MANIPULATION SELECT
+        1 = 1 and 5 or 10^2 = 1 < 6 and 1 = 0 as bool1,
+        1 = 1 as bool2
+        FROM data; -> data2
     end
     """)
     result = Evaluator(model)

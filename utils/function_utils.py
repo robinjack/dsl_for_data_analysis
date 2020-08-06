@@ -1,4 +1,6 @@
 import pandas as pd
+from utils.const import *
+from copy import copy
 
 
 
@@ -52,12 +54,27 @@ Need to apply the SPLIT-APPLY-COMBINE pattern
 in order to do group by 
 """
 
-def split():
+def split(self, symbol_table):
     pass
 
-def apply():
-    pass
+def apply(symbol_table):
+    maps = copy(symbol_table[CURRENT_QUERY_MAPS])
+    data = [map.evaluate(map, symbol_table) for map in
+            maps]
+
+    dataset = pd.concat(data, axis=1)
+    dataset = dataset.loc[:, ~dataset.columns.duplicated()]
+
+    if symbol_table[CURRENT_QUERY_FILTERS]:
+        f = return_item_or_remove_from_list(symbol_table[CURRENT_QUERY_FILTERS])
+        f.evaluate(f, symbol_table)
+
+    return dataset
 
 def combine():
     pass
+
+
+# In order to use apply multiple times, I need a function that can copy TextX objects
+
 

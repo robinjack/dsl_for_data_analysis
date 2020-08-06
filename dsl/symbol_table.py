@@ -38,7 +38,7 @@ SYMBOL_TABLE = {
     "!=": lambda x,y: x != y,
     "and": lambda x,y: x and y,
     "or": lambda x,y: x or y,
-
+    'plot' : analysis_plot
 }
 
 

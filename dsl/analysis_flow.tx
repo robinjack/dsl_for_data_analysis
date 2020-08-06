@@ -32,12 +32,17 @@ PowerOperator: "^";
 
 
 
-Data : "LOAD" name=ID fp=STRING;
-Analysis: "ANALYSIS" data=ID functionName=[AnalysisFunction] (args*=KeywordParameter[","])?;
+Data : ("LOAD" | "L") name=ID fp=STRING;
+Analysis:
+    ("ANALYSIS" | "A")
+        data=ID functionName=[AnalysisFunction]
+    (args*=KeywordParameter[","])?
+    ("->" result=ID)?
+    ;
 
 
 Manipulation :
-    "MANIPULATION" query=DataSQL ("->" name=ID)?;
+    ("MANIPULATION" | "M") query=DataSQL ("->" name=ID)?;
 
 DataSQL :
     Select;
@@ -54,8 +59,8 @@ Select:
     ;
 
 ColExp :
-    (op=BooleanExpression ("AS" | "as") colname=ID) | colname=ExpValue | colname="*";
-BoolExp: BooleanExpression | Analysis;
+    (op=BooleanExpression ("AS" | "as") colname=ID) | colname=ID | colname="*";
+BoolExp: BooleanExpression ;
 BooleanExpression :  op=BooleanTerm ((operator="OR" | operator="or") op=BooleanTerm)*;
  BooleanTerm : op=NotFactor ((operator="AND" | operator="and") op=NotFactor)*;
  NotFactor: ("NOT")? BooleanFactor;
@@ -74,7 +79,7 @@ Train: "TRAIN" data=ID  (parameters+=KeywordParameter[","])*;
 
 Test: "TEST" data=ID  (parameters+=KeywordParameter[","])*;
 
-Score: "SCORE" data=ID (parameters+=KeywordParameter[","])*;
+Score: "SCORE" data=ID (parameters+=KeywordParameter[","])* ("->" result=ID)? ;
 
 AnalysisFunction: Print | Mean | Sum | Count | Percentile | Plot;
 

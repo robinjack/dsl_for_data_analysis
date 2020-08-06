@@ -1,6 +1,6 @@
 LOAD data "examples/iris.csv"
 MANIPULATION
-    SELECT col1, sum(sepal_length)
+    SELECT col1, sum(sepal_length) as sepal_length
     from data
     group by col1;
 end

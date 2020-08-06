@@ -25,7 +25,7 @@ def revert(caretaker):
         print("Try a different id.")
         revert(caretaker)
 
-def repl(params=None):
+def repl(params=None, fp=None):
     """
     This function runs the repl of the analysis flow.
 
@@ -42,10 +42,22 @@ def repl(params=None):
     evaluator = Evaluator()
     originator = EvaluatorOriginator(evaluator)
     caretaker = Caretaker(originator)
+    fp_index=0
+    if fp:
+        with open(fp, 'r') as f:
+            # NOTE - all REPL test files must be one line per command. As
+            # we are incorporating both the TextX model AND the caretaker
+            input_file = f.read().split('\n')
 
 
     while True:
-        new_statement = input()
+        if not fp:
+            new_statement = input()
+        else:
+            new_statement = input_file[fp_index]
+            fp_index += 1
+
+
         if new_statement == "inspect":
             caretaker.show_history()
         elif new_statement == 'revert':

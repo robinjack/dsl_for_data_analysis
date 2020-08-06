@@ -6,6 +6,7 @@ from utils.const import *
 from utils.function_utils import *
 from collections import ChainMap
 from itertools import accumulate
+from utils.plots import *
 
 
 """
@@ -134,8 +135,11 @@ def analysis(self, symbol_table):
         print(e, " Value not found in symbol table.")
     function=symbol_table[self.functionName]
     args = dict(ChainMap(*[(arg.evaluate(arg)) for arg in self.args]))
-    args['data']= data
-    return function(**args)
+    args['data'] = data
+    result = function(**args)
+    if hasattr(self, 'result'):
+        symbol_table[self.result] = result
+    return result
 
 
 def manipulation(self, symbol_table):
@@ -164,26 +168,53 @@ def query(self, symbol_table):
     """
     dataset = cartesian_product([symbol_table[data] for data in self.from_items])
     maps = self.maps if self.maps else []
-    groups=self.groups
+    groups=self.groups if self.groups else []
     # having=self.having
+    symbol_table[CURRENT_QUERY_DATASET] = dataset
+    # need to instantiate this variable here so we can
+    # treat grouped queries + non-grouped queries similarly
+    grouped_dataset=dataset
 
+    # Note:
+    # Due to issues with how we have implemented this,
+    # we will skip grouping by expressions for now
     # SPLIT
+    if self.groups:
+        grouped_dataset = dataset.data.groupby(groups)
 
+    """
+    we have groups
+    1. for each group, obtain a dataframe from the original groups +
+    the group
+    2. then, apply the aggregation function to the remaining maps
+    3. join the original grouped rows to the result
+    4. append the results to each other
+
+    """
 
     # APPLY
 
-    symbol_table[CURRENT_QUERY_DATASET] = dataset
-    data = [map.evaluate(map, symbol_table) for map in maps]
-
-    dataset = pd.concat(data, axis=1)
-    dataset = dataset.loc[:, ~dataset.columns.duplicated()]
-
-    if self.filters:
-        f = return_item_or_remove_from_list(self.filters)
-        f.evaluate(f, symbol_table)
+    symbol_table[CURRENT_QUERY_MAPS] = [m for m in maps if m not in groups]
+    symbol_table[CURRENT_QUERY_GROUPS] = groups
+    symbol_table[CURRENT_QUERY_FILTERS] = self.filters
 
     # COMBINE
-
+    if hasattr(grouped_dataset, 'groups'):
+        try:
+            combined_output = []
+            for group in grouped_dataset.groups:
+                symbol_table[CURRENT_QUERY_DATASET] = Data(grouped_dataset._selected_obj.iloc[grouped_dataset.groups[group].values,])
+                mapped_group = apply(symbol_table)
+                combined_output.append(mapped_group)
+            dataset = pd.concat(combined_output)
+        except Exception as e:
+            print("Exception found: ", e, """\n Group by not implemented yet due to
+             side effects of evaluating the expression (current design expects
+             to only be evaluated once). This presents a significant
+             blocker to implementing group by.  
+             """)
+    else:
+        dataset = apply(symbol_table)
 
 
     return dataset
@@ -211,7 +242,7 @@ def columnExpression(self, symbol_table):
     elif self.op is None:
         # We treat this as either being a column call, or a select *
         # try:
-        return self.colname.evaluate(self.colname, symbol_table)
+        return symbol_table[CURRENT_QUERY_DATASET].get_column(self.colname)
         # except Exception as e:
         #     print("Thrown Exception due to invalid column selected:", e)
 
@@ -255,9 +286,12 @@ def analysis_percentile(data, col, ntile=0.5):
         print(e, f" '{col}' column does not exist")
 
 
-def analysis_plot():
-    pass
-
+def analysis_plot(data, plot_type='pairs', **kwargs):
+    params = {key: value for key, value in kwargs}
+    params['data'] = data
+    plot = KIND_TO_PLOT_FUNC_DICT[plot_type](**params)
+    plt.show()
+    return plot
 
 
 def keywordParameter(self):

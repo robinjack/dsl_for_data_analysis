@@ -1,0 +1,6 @@
+LOAD data "examples/iris.csv"
+MANIPULATION SELECT
+        1 = 1 and 5 or 10^2 = 1 < 6 and 1 = 0 as bool1,
+        1 = 1 as bool2
+        FROM data; -> data2
+end

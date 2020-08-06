@@ -62,6 +62,9 @@ CLASSNAMES = ['Program',
 SELECT_ALL_OPERATOR= "*"
 
 CURRENT_QUERY_DATASET = 'current_query_dataset'
+CURRENT_QUERY_MAPS = 'maps'
+CURRENT_QUERY_GROUPS = 'groups'
+CURRENT_QUERY_FILTERS = 'filters'
 
 
 

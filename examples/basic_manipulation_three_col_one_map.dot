@@ -1,0 +1,52 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+4550770896 -> 4551012880 [label="statement:0" arrowtail=diamond dir=both]
+4551012880[label="{data:Data|+fp:str='examples/iris.csv'\l}"]
+4550770896 -> 4551013456 [label="statement:1" arrowtail=diamond dir=both]
+4551013456 -> 4551012816 [label="query" arrowtail=diamond dir=both]
+4551012816 -> 4551014224 [label="maps:0" arrowtail=diamond dir=both]
+4551014224 -> 4550977168 [label="colname" arrowtail=diamond dir=both]
+4550977168[label="{:ExpValue|+op:str='sepal_length'\l}"]
+4551014224[label="{:ColExp|}"]
+4551012816 -> 4550979216 [label="maps:1" arrowtail=diamond dir=both]
+4550979216 -> 4550975632 [label="colname" arrowtail=diamond dir=both]
+4550975632[label="{:ExpValue|+op:str='sepal_length'\l}"]
+4550979216[label="{:ColExp|}"]
+4551012816 -> 4550977040 [label="maps:2" arrowtail=diamond dir=both]
+4550977040 -> 4550977296 [label="op" arrowtail=diamond dir=both]
+4550977296 -> 4550977424 [label="op:0" arrowtail=diamond dir=both]
+4550977424 -> 4550975696 [label="op:0" arrowtail=diamond dir=both]
+4550975696 -> 4550979088 [label="op:0" arrowtail=diamond dir=both]
+4550979088 -> 4550978960 [label="op:0" arrowtail=diamond dir=both]
+4550978960 -> 4550976656 [label="op:0" arrowtail=diamond dir=both]
+4550976656 -> 4550976208 [label="op:0" arrowtail=diamond dir=both]
+4550976208[label="{:ExpValue|+op:str='sepal_length'\l}"]
+4550976656[label="{:ExpPower|operator:list=[]\l}"]
+4550978960[label="{:ExpProduct|operator:list=[]\l}"]
+4550979088 -> 4550977360 [label="op:1" arrowtail=diamond dir=both]
+4550977360 -> 4550975760 [label="op:0" arrowtail=diamond dir=both]
+4550975760 -> 4550976848 [label="op:0" arrowtail=diamond dir=both]
+4550976848[label="{:ExpValue|+op:int=1\l}"]
+4550975760[label="{:ExpPower|operator:list=[]\l}"]
+4550977360[label="{:ExpProduct|operator:list=[]\l}"]
+4550979088[label="{:Additive|operator:list=['+']\l}"]
+4550975696[label="{:Relation|operator:list=[]\l}"]
+4550977424[label="{:BooleanTerm|operator:list=[]\l}"]
+4550977296[label="{:BooleanExpression|operator:list=[]\l}"]
+4550977040[label="{:ColExp|+colname:str='sepal_length_plus_one'\l}"]
+4551012816[label="{:Select|+optional:str=''\l+from_items:list=['data']\l+groups:list=[]\l+having:list=[]\l}"]
+4551013456[label="{:Manipulation|}"]
+4550770896[label="{:Program|}"]
+
+}

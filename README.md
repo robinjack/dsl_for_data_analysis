@@ -75,8 +75,10 @@ http://textx.github.io/textX/stable/grammar/
         * implement FUNCTION CALLS on the COLUMNS [DONE]
         * implement GROUP BY [DONE]
     * TODO - 3. implement evaluator class as an OOP interpreter (each class has its own evaluate method) [DONE]
-    * TODO: pass PLOT and GROUP BY tests
-    * TODO: make analysis functions more usable
+    * TODO: pass PLOT and GROUP BY tests [Have been stuck on group by for a few days due to design issues - will move on to PLOTTING - DONE]
+    * TODO: make analysis functions more usable [Decided to delay until after user testing]
+    * TODO: add in shortcuts to ANALYSIS / MANIPULATIION / etc [DONE]
+    * TODO: alter REPL so that if you pass a param, it accepts a script. [DONE]
 * Work to pass tests - 7/31
     * TODO: 2020-08-02
     * 1. Get the tests all working (they currently just test if things work) [DONE]
